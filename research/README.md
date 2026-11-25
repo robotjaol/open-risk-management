@@ -1,0 +1,21 @@
+# Research
+
+Purpose: keep the evidence base of the project in one place. Version 0.1.0.
+
+| File | Content | How it is made |
+|---|---|---|
+| [paper_catalog.csv](paper_catalog.csv) | every cited source with verification status and the modules that use it | generated from `tools/refs.py` by `python tools/render_catalogs.py` |
+| [regulatory_sources.md](regulatory_sources.md) | regulatory and supervisory texts, status and use | hand written |
+| [standards_mapping.md](standards_mapping.md) | which module touches which standard or framework | hand written, checked against specs |
+| [research_gaps.md](research_gaps.md) | what is missing, unverified or untested | hand written |
+
+## Verification rule
+
+`verified = yes` means the bibliographic record (authors, title, year, venue or issuer, link) was matched with an independent index or the publisher page on the date in the catalog. It does not mean the full text was read for every claim. A module that cites an entry with `verified = no` cannot reach Complete.
+
+## Adding a source
+
+1. Add an entry to `tools/refs.py` with `verified = False`.
+2. Check the record against an independent source. Change to `True` only then, and write the source in the `source` field.
+3. Cite it in a module spec by key.
+4. Run `python tools/render_catalogs.py` and `python tools/build_modules.py`.
