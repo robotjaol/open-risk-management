@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "risk-lab"
+version = "0.1.0"
+description = "Paper-driven open laboratory for banking and enterprise risk management"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "robotjaol" }]
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "scipy>=1.11",
+  "scikit-learn>=1.4",
+  "statsmodels>=0.14",
+  "matplotlib>=3.8",
+  "seaborn>=0.13",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+development = [
+  "pytest>=8.0",
+  "ruff>=0.4",
+  "nbformat>=5.9",
+  "nbclient>=0.10",
+  "ipykernel>=6.29",
+  "jupyterlab>=4.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/risk_lab"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E402", "E702"]
+"tools/specs/*.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
