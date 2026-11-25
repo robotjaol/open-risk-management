@@ -1,0 +1,22 @@
+name: notebook-validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[development]"
+      - run: python -m ipykernel install --user --name python3
+      - run: python tools/build_datasets.py
+      - run: git diff --exit-code datasets
+      - run: python tools/run_notebooks.py
+      - run: python tools/render_results.py
+      - run: python tools/render_status.py
+      - run: python -m pytest tests/notebook_validation -q
