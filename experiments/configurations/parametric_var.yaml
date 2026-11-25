@@ -1,0 +1,13 @@
+weights:
+  r_equity: 0.5
+  r_fx: 0.3
+  r_bond: 0.2
+alpha: 0.99
+evaluation_days:
+- 1000
+- 3000
+ewma_decay: 0.94
+nu_hat: 3.0
+n_scenarios: 1000000
+portfolio_value: 100000000
+seed: 42

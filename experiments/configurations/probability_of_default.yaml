@@ -1,0 +1,23 @@
+n_loans: 15000
+train_share: 0.7
+seed: 42
+features_model_a:
+- dti_z
+- utilization_z
+- ltv_z
+- log_income_z
+- credit_history_years_z
+- delinq_2y_z
+- interest_rate_z
+features_model_b:
+- age
+- employment_years
+- credit_history_years
+- dti
+- utilization
+- ltv
+- delinq_2y
+- term_months
+- interest_rate
+- log_income
+- log_loan_amount

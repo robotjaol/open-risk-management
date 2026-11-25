@@ -1,0 +1,89 @@
+{
+  "module": "duration_and_convexity",
+  "methodology": "Present value pricing, analytical duration and convexity, checked by closed form and finite difference",
+  "data_kind": "illustrative",
+  "dataset": "none, bonds defined in the notebook",
+  "n_obs": 25,
+  "seed": null,
+  "parameters": {
+    "bond": {
+      "face": 100.0,
+      "coupon_rate": 0.05,
+      "years": 10,
+      "freq": 2,
+      "ytm": 0.05
+    },
+    "shock_grid_bp": [
+      -300,
+      300,
+      25
+    ],
+    "tolerance_pct_of_price": 0.1
+  },
+  "assumptions": [
+    "flat yield per bond",
+    "parallel yield shifts only",
+    "fixed cash flows, no options",
+    "tolerance of 0.10 percent of price is a teaching choice"
+  ],
+  "metrics": {
+    "reference_bond": {
+      "face": 100.0,
+      "coupon_rate": 0.05,
+      "maturity_years": 10,
+      "ytm": 0.05,
+      "freq": 2
+    },
+    "price": 100.00000000000014,
+    "macaulay_duration": 7.989445671393992,
+    "modified_duration": 7.794581142823407,
+    "convexity": 73.62873142656362,
+    "dv01_per_100_face": 0.07794581142823419,
+    "error_pct_plus_100bp": {
+      "duration_only": -0.35584371259548625,
+      "duration_plus_convexity": 0.01229994453733239
+    },
+    "error_pct_plus_300bp": {
+      "duration_only": -2.9982539110185185,
+      "duration_plus_convexity": 0.3150390031768491
+    },
+    "first_shock_above_tolerance_bp": {
+      "duration_only": 52,
+      "duration_plus_convexity": 196
+    },
+    "tolerance_pct_of_price": 0.1,
+    "par_bond_closed_form_check": "passed",
+    "finite_difference_check_max_gap": 6.5670947151375e-06,
+    "acceptance_criteria": {
+      "par_bond_price_equals_100": true,
+      "par_bond_duration_matches_closed_form": true,
+      "loops_match_library": true,
+      "finite_difference_gap_below_1e-4": true,
+      "convexity_widens_safe_shock": true
+    },
+    "hedge_residual_pct_after_plus_50bp": 0.3708821969253469,
+    "portfolio_dv01_currency": 2083.463246459071
+  },
+  "baseline": {
+    "name": "full revaluation",
+    "note": "duration estimates are compared with exact repricing"
+  },
+  "limitations": [
+    "no curve shape changes",
+    "no embedded options",
+    "illustrative bonds only"
+  ],
+  "created": "2026-11-25T05:24:11+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

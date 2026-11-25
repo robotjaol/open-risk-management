@@ -1,0 +1,15 @@
+weights:
+  r_equity: 0.5
+  r_fx: 0.3
+  r_bond: 0.2
+windows:
+- 250
+- 500
+- 1000
+alpha: 0.99
+n_boot: 2000
+evaluation_days:
+- 1000
+- 3000
+portfolio_value: 100000000
+seed: 42

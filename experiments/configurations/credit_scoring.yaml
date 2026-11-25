@@ -1,0 +1,7 @@
+n_bins: 6
+min_iv: 0.02
+base_score: 600
+base_odds: 50
+pdo: 20
+train_share: 0.7
+seed: 42

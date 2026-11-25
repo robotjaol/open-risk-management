@@ -1,0 +1,272 @@
+{
+  "module": "parametric_var",
+  "methodology": "Delta normal, Student t, EWMA and Monte Carlo VaR with Euler decomposition and Kupiec backtest",
+  "data_kind": "synthetic",
+  "dataset": "datasets/synthetic/market_returns.csv",
+  "n_obs": 3000,
+  "seed": 42,
+  "parameters": {
+    "weights": {
+      "r_equity": 0.5,
+      "r_fx": 0.3,
+      "r_bond": 0.2
+    },
+    "alpha": 0.99,
+    "evaluation_days": [
+      1000,
+      3000
+    ],
+    "ewma_decay": 0.94,
+    "nu_hat": 3.0,
+    "n_scenarios": 1000000,
+    "portfolio_value": 100000000,
+    "seed": 42
+  },
+  "assumptions": [
+    "linear portfolio, daily rebalanced fixed weights",
+    "t degrees of freedom estimated on the first 1000 days and held fixed",
+    "zero mean for EWMA",
+    "multivariate t with a common mixing variable"
+  ],
+  "metrics": {
+    "full_sample_var_99_pct": {
+      "historical": 1.4620709999999977,
+      "normal": 1.3200479189705152,
+      "student_t": 1.4906248372091069
+    },
+    "nu_estimated_first_1000_days": 3.0,
+    "nu_raw_first_1000_days": 2.0697687868813066,
+    "jarque_bera_p_value": 0.0,
+    "excess_kurtosis": 5.75255720232073,
+    "acf_squared_returns_lag1": 0.09147862255581703,
+    "monte_carlo_convergence": [
+      {
+        "n_scenarios": 1000,
+        "mean_estimate_pct": 1.3208002909344854,
+        "sd_of_estimate_pct": 0.07995086903553653,
+        "mean_error_pct": 0.0007523719639702595
+      },
+      {
+        "n_scenarios": 10000,
+        "mean_estimate_pct": 1.3259604365643742,
+        "sd_of_estimate_pct": 0.023730418346666917,
+        "mean_error_pct": 0.0059125175938590235
+      },
+      {
+        "n_scenarios": 100000,
+        "mean_estimate_pct": 1.3182412105567536,
+        "sd_of_estimate_pct": 0.007247158375510022,
+        "mean_error_pct": -0.001806708413761536
+      },
+      {
+        "n_scenarios": 1000000,
+        "mean_estimate_pct": 1.3191063334483062,
+        "sd_of_estimate_pct": 0.003105834866517969,
+        "mean_error_pct": -0.0009415855222089792
+      }
+    ],
+    "monte_carlo_normal_within_3_se": true,
+    "t_monte_carlo_relative_gap": 0.000971642665886978,
+    "component_var_pct": {
+      "r_equity": 1.312536089847556,
+      "r_fx": 0.056043619643696876,
+      "r_bond": -0.024462423854070766
+    },
+    "evaluation_by_model": [
+      {
+        "model": "historical 500",
+        "exceptions": 24,
+        "expected": 20.000000000000018,
+        "rate_pct": 1.2,
+        "kupiec_p": 0.3834784718925873,
+        "burst_exceptions_60d": 6,
+        "mean_var_pct": 1.4606732095999992,
+        "var_sd_pct": 0.12151973994122255
+      },
+      {
+        "model": "normal rolling 500",
+        "exceptions": 28,
+        "expected": 20.000000000000018,
+        "rate_pct": 1.4000000000000001,
+        "kupiec_p": 0.08997547619700617,
+        "burst_exceptions_60d": 5,
+        "mean_var_pct": 1.3709076639313735,
+        "var_sd_pct": 0.12525891581368215
+      },
+      {
+        "model": "ewma normal",
+        "exceptions": 33,
+        "expected": 20.000000000000018,
+        "rate_pct": 1.6500000000000001,
+        "kupiec_p": 0.007552159184521951,
+        "burst_exceptions_60d": 1,
+        "mean_var_pct": 1.2960152663326037,
+        "var_sd_pct": 0.5125773096551602
+      },
+      {
+        "model": "ewma student t",
+        "exceptions": 15,
+        "expected": 20.000000000000018,
+        "rate_pct": 0.75,
+        "kupiec_p": 0.2397346726858202,
+        "burst_exceptions_60d": 0,
+        "mean_var_pct": 1.460487736468559,
+        "var_sd_pct": 0.5776265868084984
+      },
+      {
+        "model": "student t rolling 500",
+        "exceptions": 22,
+        "expected": 20.000000000000018,
+        "rate_pct": 1.0999999999999999,
+        "kupiec_p": 0.6582398216799925,
+        "burst_exceptions_60d": 5,
+        "mean_var_pct": 1.5500428917915576,
+        "var_sd_pct": 0.14144777753659038
+      }
+    ],
+    "ewma_decay_experiment": [
+      {
+        "decay": 0.9,
+        "shape": "normal",
+        "exceptions": 33,
+        "kupiec_p": 0.007552159184521951,
+        "burst_exceptions_60d": 1
+      },
+      {
+        "decay": 0.9,
+        "shape": "t",
+        "exceptions": 17,
+        "kupiec_p": 0.488921195014449,
+        "burst_exceptions_60d": 0
+      },
+      {
+        "decay": 0.94,
+        "shape": "normal",
+        "exceptions": 33,
+        "kupiec_p": 0.007552159184521951,
+        "burst_exceptions_60d": 1
+      },
+      {
+        "decay": 0.94,
+        "shape": "t",
+        "exceptions": 15,
+        "kupiec_p": 0.2397346726858202,
+        "burst_exceptions_60d": 0
+      },
+      {
+        "decay": 0.97,
+        "shape": "normal",
+        "exceptions": 32,
+        "kupiec_p": 0.013118145076341198,
+        "burst_exceptions_60d": 1
+      },
+      {
+        "decay": 0.97,
+        "shape": "t",
+        "exceptions": 18,
+        "kupiec_p": 0.6475201314845285,
+        "burst_exceptions_60d": 1
+      },
+      {
+        "decay": 0.99,
+        "shape": "normal",
+        "exceptions": 28,
+        "kupiec_p": 0.08997547619700617,
+        "burst_exceptions_60d": 3
+      },
+      {
+        "decay": 0.99,
+        "shape": "t",
+        "exceptions": 19,
+        "kupiec_p": 0.8207138270120742,
+        "burst_exceptions_60d": 2
+      }
+    ],
+    "nu_experiment": [
+      {
+        "nu": 3,
+        "t_var_pct": 1.4906248372091069,
+        "normal_var_pct": 1.3200479189705152,
+        "ratio": 1.1292202470737744
+      },
+      {
+        "nu": 4,
+        "t_var_pct": 1.5067540797362637,
+        "normal_var_pct": 1.3200479189705152,
+        "ratio": 1.1414389266348435
+      },
+      {
+        "nu": 5,
+        "t_var_pct": 1.4818931667474107,
+        "normal_var_pct": 1.3200479189705152,
+        "ratio": 1.1226055853359596
+      },
+      {
+        "nu": 6,
+        "t_var_pct": 1.4585014179041365,
+        "normal_var_pct": 1.3200479189705152,
+        "ratio": 1.104885206774614
+      },
+      {
+        "nu": 8,
+        "t_var_pct": 1.4252383089925376,
+        "normal_var_pct": 1.3200479189705152,
+        "ratio": 1.07968679660058
+      },
+      {
+        "nu": 12,
+        "t_var_pct": 1.3899923803681125,
+        "normal_var_pct": 1.3200479189705152,
+        "ratio": 1.0529863048094086
+      },
+      {
+        "nu": 30,
+        "t_var_pct": 1.3475458046152045,
+        "normal_var_pct": 1.3200479189705152,
+        "ratio": 1.0208309753377245
+      }
+    ],
+    "correlation_experiment": [
+      {
+        "case": "zero correlation",
+        "var_pct": 1.4432258308304424
+      },
+      {
+        "case": "estimated",
+        "var_pct": 1.3200479189705152
+      },
+      {
+        "case": "perfect correlation",
+        "var_pct": 1.9745622186711567
+      }
+    ],
+    "acceptance_criteria": {
+      "monte_carlo_normal_within_3_se": true,
+      "components_sum_to_total": true,
+      "t_monte_carlo_within_2pct": true,
+      "exceptions_and_kupiec_reported": true
+    }
+  },
+  "baseline": {
+    "model": "historical 500",
+    "exceptions": 24
+  },
+  "limitations": [
+    "synthetic returns from a GARCH with Student t shocks, so a t model is well matched by construction",
+    "linear positions only",
+    "single confidence level in the backtest"
+  ],
+  "created": "2026-11-25T05:24:31+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

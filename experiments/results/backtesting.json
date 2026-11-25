@@ -1,0 +1,291 @@
+{
+  "module": "backtesting",
+  "methodology": "Kupiec, Christoffersen independence and conditional coverage tests, traffic light zones from binomial probabilities, simulated power",
+  "data_kind": "synthetic",
+  "dataset": "datasets/synthetic/market_returns.csv",
+  "n_obs": 2000,
+  "seed": 42,
+  "parameters": {
+    "alpha": 0.99,
+    "window": 500,
+    "ewma_decay": 0.94,
+    "nu_used": 3.0,
+    "evaluation_days": [
+      1000,
+      3000
+    ],
+    "power_simulations": 20000,
+    "markov_paths": 5000,
+    "seed": 42
+  },
+  "assumptions": [
+    "tests applied to clean (hypothetical) portfolio returns, not to actual trading P&L",
+    "exceptions are iid under the null",
+    "decision rule fixed before the results were read",
+    "zone boundaries as encoded in the library, not verified against the current Basel text"
+  ],
+  "metrics": {
+    "evaluation_by_model": [
+      {
+        "model": "historical 500",
+        "exceptions": 24,
+        "expected": 20.000000000000018,
+        "kupiec_p": 0.3834784718925873,
+        "independence_p": 0.03233020542082956,
+        "conditional_p": 0.06923760513409634,
+        "last_250_count": 1,
+        "last_250_zone": "green",
+        "windows_green": 0.6253569388920617,
+        "windows_yellow": 0.3746430611079383,
+        "windows_red": 0.0,
+        "accepted": false
+      },
+      {
+        "model": "normal rolling 500",
+        "exceptions": 28,
+        "expected": 20.000000000000018,
+        "kupiec_p": 0.08997547619700617,
+        "independence_p": 0.06161774077338198,
+        "conditional_p": 0.04141737861064308,
+        "last_250_count": 2,
+        "last_250_zone": "green",
+        "windows_green": 0.5859508852084523,
+        "windows_yellow": 0.4140491147915477,
+        "windows_red": 0.0,
+        "accepted": false
+      },
+      {
+        "model": "student t rolling 500",
+        "exceptions": 22,
+        "expected": 20.000000000000018,
+        "kupiec_p": 0.6582398216799925,
+        "independence_p": 0.02228105940230222,
+        "conditional_p": 0.06655771611101463,
+        "last_250_count": 1,
+        "last_250_zone": "green",
+        "windows_green": 0.7041690462592805,
+        "windows_yellow": 0.2958309537407196,
+        "windows_red": 0.0,
+        "accepted": false
+      },
+      {
+        "model": "ewma normal",
+        "exceptions": 33,
+        "expected": 20.000000000000018,
+        "kupiec_p": 0.007552159184521951,
+        "independence_p": 0.5732608684796796,
+        "conditional_p": 0.024065322024057027,
+        "last_250_count": 4,
+        "last_250_zone": "green",
+        "windows_green": 0.6105082809822958,
+        "windows_yellow": 0.3894917190177042,
+        "windows_red": 0.0,
+        "accepted": false
+      },
+      {
+        "model": "ewma student t",
+        "exceptions": 15,
+        "expected": 20.000000000000018,
+        "kupiec_p": 0.2397346726858202,
+        "independence_p": 0.6338943267384287,
+        "conditional_p": 0.44731820230054997,
+        "last_250_count": 3,
+        "last_250_zone": "green",
+        "windows_green": 1.0,
+        "windows_yellow": 0.0,
+        "windows_red": 0.0,
+        "accepted": true
+      }
+    ],
+    "decision_rule": "accepted if Kupiec, independence and conditional coverage p above 0.05 and last 250 day zone is green",
+    "accepted_models": [
+      "ewma student t"
+    ],
+    "max_gap_loops_vs_library": 0.0,
+    "max_gap_binomial_check": 1.9895196601282805e-13,
+    "zone_boundaries_agree_with_probability_rule": true,
+    "kupiec_power": [
+      {
+        "days": 250,
+        "true_rate": 0.01,
+        "kupiec_rejection_rate": 0.0944
+      },
+      {
+        "days": 250,
+        "true_rate": 0.015,
+        "kupiec_rejection_rate": 0.10795
+      },
+      {
+        "days": 250,
+        "true_rate": 0.02,
+        "kupiec_rejection_rate": 0.24205
+      },
+      {
+        "days": 250,
+        "true_rate": 0.03,
+        "kupiec_rejection_rate": 0.6319
+      },
+      {
+        "days": 500,
+        "true_rate": 0.01,
+        "kupiec_rejection_rate": 0.07295
+      },
+      {
+        "days": 500,
+        "true_rate": 0.015,
+        "kupiec_rejection_rate": 0.2305
+      },
+      {
+        "days": 500,
+        "true_rate": 0.02,
+        "kupiec_rejection_rate": 0.54295
+      },
+      {
+        "days": 500,
+        "true_rate": 0.03,
+        "kupiec_rejection_rate": 0.93355
+      },
+      {
+        "days": 1000,
+        "true_rate": 0.01,
+        "kupiec_rejection_rate": 0.0568
+      },
+      {
+        "days": 1000,
+        "true_rate": 0.015,
+        "kupiec_rejection_rate": 0.32835
+      },
+      {
+        "days": 1000,
+        "true_rate": 0.02,
+        "kupiec_rejection_rate": 0.78595
+      },
+      {
+        "days": 1000,
+        "true_rate": 0.03,
+        "kupiec_rejection_rate": 0.9962
+      },
+      {
+        "days": 2000,
+        "true_rate": 0.01,
+        "kupiec_rejection_rate": 0.0396
+      },
+      {
+        "days": 2000,
+        "true_rate": 0.015,
+        "kupiec_rejection_rate": 0.52715
+      },
+      {
+        "days": 2000,
+        "true_rate": 0.02,
+        "kupiec_rejection_rate": 0.9569
+      },
+      {
+        "days": 2000,
+        "true_rate": 0.03,
+        "kupiec_rejection_rate": 1.0
+      },
+      {
+        "days": 4000,
+        "true_rate": 0.01,
+        "kupiec_rejection_rate": 0.0593
+      },
+      {
+        "days": 4000,
+        "true_rate": 0.015,
+        "kupiec_rejection_rate": 0.83235
+      },
+      {
+        "days": 4000,
+        "true_rate": 0.02,
+        "kupiec_rejection_rate": 0.99945
+      },
+      {
+        "days": 4000,
+        "true_rate": 0.03,
+        "kupiec_rejection_rate": 1.0
+      }
+    ],
+    "traffic_light_under_wrong_model_250d": [
+      {
+        "true_rate": 0.01,
+        "green": 0.8887,
+        "yellow": 0.11075,
+        "red": 0.00055
+      },
+      {
+        "true_rate": 0.015,
+        "green": 0.67985,
+        "yellow": 0.3146,
+        "red": 0.00555
+      },
+      {
+        "true_rate": 0.02,
+        "green": 0.4406,
+        "yellow": 0.5288,
+        "red": 0.0306
+      },
+      {
+        "true_rate": 0.03,
+        "green": 0.1262,
+        "yellow": 0.6526,
+        "red": 0.2212
+      }
+    ],
+    "clustering_power": [
+      {
+        "p_hit_after_hit": 0.01,
+        "overall_rate": 0.009986,
+        "kupiec_rejection": 0.0508,
+        "independence_rejection": 0.0168
+      },
+      {
+        "p_hit_after_hit": 0.1,
+        "overall_rate": 0.0100686,
+        "kupiec_rejection": 0.0786,
+        "independence_rejection": 0.367
+      },
+      {
+        "p_hit_after_hit": 0.2,
+        "overall_rate": 0.010007,
+        "kupiec_rejection": 0.1184,
+        "independence_rejection": 0.6794
+      },
+      {
+        "p_hit_after_hit": 0.3,
+        "overall_rate": 0.0099796,
+        "kupiec_rejection": 0.1562,
+        "independence_rejection": 0.8366
+      }
+    ],
+    "nu_raw_first_1000_days": 2.0697687868813066,
+    "nu_used": 3.0,
+    "acceptance_criteria": {
+      "loops_match_library_1e-9": true,
+      "binomial_check_1e-9": true,
+      "zone_boundaries_agree_with_probability_rule": true,
+      "power_for_two_lengths_and_three_rates": true
+    }
+  },
+  "baseline": {
+    "note": "historical 500 is the reference model"
+  },
+  "limitations": [
+    "low power at 250 days",
+    "15 p values from one sample, no multiple testing correction",
+    "synthetic data"
+  ],
+  "created": "2026-11-25T05:24:38+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

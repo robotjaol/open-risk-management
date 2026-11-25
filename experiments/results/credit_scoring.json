@@ -1,0 +1,226 @@
+{
+  "module": "credit_scoring",
+  "methodology": "WoE binning, logistic regression on WoE, linear points scaling, evaluation on test and drifted samples",
+  "data_kind": "synthetic",
+  "dataset": "datasets/synthetic/retail_loans_dev.csv and retail_loans_monitoring.csv",
+  "n_obs": 21000,
+  "seed": 42,
+  "parameters": {
+    "n_bins": 6,
+    "min_iv": 0.02,
+    "base_score": 600,
+    "base_odds": 50,
+    "pdo": 20,
+    "train_share": 0.7,
+    "seed": 42
+  },
+  "assumptions": [
+    "good to bad odds convention",
+    "IV cutoff 0.02 and PSI bands 0.10 and 0.25 are practitioner rules of thumb, not verified",
+    "monitoring sample has covariate shift only, the true default process is unchanged"
+  ],
+  "metrics": {
+    "selected_characteristics": [
+      "income",
+      "credit_history_years",
+      "dti",
+      "utilization",
+      "ltv",
+      "delinq_2y",
+      "interest_rate"
+    ],
+    "iv": {
+      "age": 0.00959337067665327,
+      "income": 0.13705667039164063,
+      "employment_years": 0.001514913996317969,
+      "credit_history_years": 0.05790626818756536,
+      "dti": 0.39854672228318255,
+      "utilization": 0.06969371878946708,
+      "ltv": 0.10268731683470746,
+      "delinq_2y": 0.21676554817710647,
+      "loan_amount": 0.005416262752714151,
+      "term_months": 0.0006043305152370091,
+      "interest_rate": 0.552085424777368
+    },
+    "scaling": {
+      "factor": 28.85390081777927,
+      "offset": 487.1228762045055,
+      "base_score": 600,
+      "base_odds_good_to_bad": 50,
+      "pdo": 20
+    },
+    "evaluation": [
+      {
+        "sample": "train",
+        "n": 10500,
+        "observed_default_rate": 0.06438095238095239,
+        "mean_predicted_pd": 0.06438095238095239,
+        "auc": 0.7769313888942428,
+        "gini": 0.5538627777884857,
+        "ks": 0.4216771389472466,
+        "brier": 0.05398700825013459
+      },
+      {
+        "sample": "test",
+        "n": 4500,
+        "observed_default_rate": 0.06222222222222222,
+        "mean_predicted_pd": 0.06321457819722302,
+        "auc": 0.7602682802979012,
+        "gini": 0.5205365605958023,
+        "ks": 0.4282329045362221,
+        "brier": 0.05430830690397905
+      },
+      {
+        "sample": "monitoring",
+        "n": 6000,
+        "observed_default_rate": 0.12633333333333333,
+        "mean_predicted_pd": 0.11210588777304592,
+        "auc": 0.7642126361164493,
+        "gini": 0.5284252722328986,
+        "ks": 0.3965665987825147,
+        "brier": 0.09640735622136282
+      }
+    ],
+    "raw_logistic_test_auc": 0.780468009478673,
+    "score_psi_train_vs_test": 0.0026412780940969936,
+    "score_psi_train_vs_monitoring": 0.3481087370950268,
+    "max_gap_integer_points": 3.061077142745887,
+    "number_of_bins_experiment": [
+      {
+        "n_bins": 3,
+        "selected": 6,
+        "iv_sum_selected": 1.031704212342231,
+        "test_auc": 0.739948375084631
+      },
+      {
+        "n_bins": 5,
+        "selected": 7,
+        "iv_sum_selected": 1.5211488072359394,
+        "test_auc": 0.7599191773865944
+      },
+      {
+        "n_bins": 8,
+        "selected": 8,
+        "iv_sum_selected": 1.6689917579041578,
+        "test_auc": 0.7572816519972918
+      },
+      {
+        "n_bins": 12,
+        "selected": 8,
+        "iv_sum_selected": 1.7575311824726927,
+        "test_auc": 0.754218855788761
+      }
+    ],
+    "drift_experiment": [
+      {
+        "drift": 0.0,
+        "psi_score": 0.0019150500656882716,
+        "auc": 0.7548056752200787,
+        "observed_rate": 0.06333333333333334,
+        "mean_predicted": 0.06334545362543652,
+        "calibration_gap": 1.2120292103179331e-05
+      },
+      {
+        "drift": 0.5,
+        "psi_score": 0.09613536977651321,
+        "auc": 0.7579809388142722,
+        "observed_rate": 0.09,
+        "mean_predicted": 0.08633530544757613,
+        "calibration_gap": -0.0036646945524238667
+      },
+      {
+        "drift": 1.0,
+        "psi_score": 0.36041131988262803,
+        "auc": 0.7557369593279514,
+        "observed_rate": 0.13433333333333333,
+        "mean_predicted": 0.1119980783599472,
+        "calibration_gap": -0.022335254973386134
+      },
+      {
+        "drift": 1.5,
+        "psi_score": 0.825070223799981,
+        "auc": 0.7623009688322371,
+        "observed_rate": 0.174,
+        "mean_predicted": 0.1509259449681915,
+        "calibration_gap": -0.023074055031808482
+      }
+    ],
+    "monotone_characteristics": [
+      {
+        "characteristic": "income",
+        "bins": 6,
+        "woe_falls_with_bin": false,
+        "woe_rises_with_bin": true,
+        "monotone": true
+      },
+      {
+        "characteristic": "credit_history_years",
+        "bins": 6,
+        "woe_falls_with_bin": false,
+        "woe_rises_with_bin": false,
+        "monotone": false
+      },
+      {
+        "characteristic": "dti",
+        "bins": 6,
+        "woe_falls_with_bin": true,
+        "woe_rises_with_bin": false,
+        "monotone": true
+      },
+      {
+        "characteristic": "utilization",
+        "bins": 6,
+        "woe_falls_with_bin": false,
+        "woe_rises_with_bin": false,
+        "monotone": false
+      },
+      {
+        "characteristic": "ltv",
+        "bins": 6,
+        "woe_falls_with_bin": true,
+        "woe_rises_with_bin": false,
+        "monotone": true
+      },
+      {
+        "characteristic": "delinq_2y",
+        "bins": 2,
+        "woe_falls_with_bin": true,
+        "woe_rises_with_bin": false,
+        "monotone": true
+      },
+      {
+        "characteristic": "interest_rate",
+        "bins": 6,
+        "woe_falls_with_bin": true,
+        "woe_rises_with_bin": false,
+        "monotone": true
+      }
+    ],
+    "acceptance_criteria": {
+      "auc_within_0.01_of_raw_logistic": false,
+      "integer_points_within_rounding_bound": true,
+      "psi_reported": true
+    }
+  },
+  "baseline": {
+    "raw_logistic_test_auc": 0.780468009478673
+  },
+  "limitations": [
+    "synthetic data",
+    "covariate shift only, no concept drift",
+    "no reject inference, no segmentation"
+  ],
+  "created": "2026-11-25T05:24:18+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

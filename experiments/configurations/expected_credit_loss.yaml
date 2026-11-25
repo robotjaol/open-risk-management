@@ -1,0 +1,14 @@
+relative_threshold: 2.0
+absolute_threshold: 0.01
+dpd_stage2: 30
+dpd_stage3: 90
+scenario_multipliers:
+  upside: 0.8
+  base: 1.0
+  downside: 1.6
+scenario_weights:
+  upside: 0.2
+  base: 0.5
+  downside: 0.3
+default_timing: middle of year
+pd_term_structure: constant annual hazard

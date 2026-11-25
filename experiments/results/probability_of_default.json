@@ -1,0 +1,157 @@
+{
+  "module": "probability_of_default",
+  "methodology": "Logistic regression by Newton Raphson, checked against statsmodels and scikit-learn, evaluated on a held out test set",
+  "data_kind": "synthetic",
+  "dataset": "datasets/synthetic/retail_loans_dev.csv",
+  "n_obs": 15000,
+  "seed": 42,
+  "parameters": {
+    "n_loans": 15000,
+    "train_share": 0.7,
+    "seed": 42,
+    "features_model_a": [
+      "dti_z",
+      "utilization_z",
+      "ltv_z",
+      "log_income_z",
+      "credit_history_years_z",
+      "delinq_2y_z",
+      "interest_rate_z"
+    ],
+    "features_model_b": [
+      "age",
+      "employment_years",
+      "credit_history_years",
+      "dti",
+      "utilization",
+      "ltv",
+      "delinq_2y",
+      "term_months",
+      "interest_rate",
+      "log_income",
+      "log_loan_amount"
+    ]
+  },
+  "assumptions": [
+    "default follows a logistic model of seven standardised features",
+    "region, age, employment_years, loan_amount and term_months have zero true effect",
+    "no time dimension, one cross section",
+    "acceptance thresholds are teaching choices"
+  ],
+  "metrics": {
+    "test_auc": {
+      "constant": 0.5,
+      "dti only": 0.6539848510494245,
+      "model B (all numeric)": 0.7847731888964117,
+      "model A (7 drivers)": 0.7854925524712254,
+      "oracle (true PD)": 0.7853351387948544
+    },
+    "test_gini": {
+      "constant": 0.0,
+      "dti only": 0.307969702098849,
+      "model B (all numeric)": 0.5695463777928234,
+      "model A (7 drivers)": 0.5709851049424508,
+      "oracle (true PD)": 0.5706702775897088
+    },
+    "test_ks": {
+      "constant": 0.0,
+      "dti only": 0.23177048070412998,
+      "model B (all numeric)": 0.4683141503046716,
+      "model A (7 drivers)": 0.4725287745429925,
+      "oracle (true PD)": 0.4538253215978335
+    },
+    "test_brier": {
+      "constant": 0.058355277399848825,
+      "dti only": 0.057297294782379694,
+      "model B (all numeric)": 0.053205052982886226,
+      "model A (7 drivers)": 0.05318962907976522,
+      "oracle (true PD)": 0.05296930057582244
+    },
+    "observed_test_default_rate": 0.06222222222222222,
+    "mean_predicted_pd_model_a": 0.06317516439877863,
+    "mean_pd_gap_pct_of_observed": 1.5315142123227965,
+    "newton_iterations_model_a": 8,
+    "coefficient_gap_vs_statsmodels": 8.326672684688674e-17,
+    "slopes_within_1_96_se": 7,
+    "acceptance_criteria": {
+      "auc_at_least_0.70": true,
+      "auc_within_0.02_of_oracle": true,
+      "mean_pd_within_10pct_of_observed": true
+    },
+    "sample_size_experiment": [
+      {
+        "n_train": 300,
+        "auc_mean": 0.7502917795080118,
+        "auc_sd": 0.03047159482036257,
+        "slope_rmse": 0.43722051108264753
+      },
+      {
+        "n_train": 1000,
+        "auc_mean": 0.7759795192958701,
+        "auc_sd": 0.006786159026341588,
+        "slope_rmse": 0.2185736094413354
+      },
+      {
+        "n_train": 3000,
+        "auc_mean": 0.783173775671406,
+        "auc_sd": 0.0023469369001684936,
+        "slope_rmse": 0.1253508234997668
+      },
+      {
+        "n_train": 10500,
+        "auc_mean": 0.7854925524712254,
+        "auc_sd": null,
+        "slope_rmse": 0.05391963143560476
+      }
+    ],
+    "ridge_experiment_n1000": [
+      {
+        "l2": 0,
+        "auc": 0.7760891164522682,
+        "brier": 0.054108764561857314,
+        "slope_rmse": 0.2269549011665852
+      },
+      {
+        "l2": 10,
+        "auc": 0.7765228785827127,
+        "brier": 0.05366975966533957,
+        "slope_rmse": 0.12075378477897095
+      },
+      {
+        "l2": 100,
+        "auc": 0.7708761002031145,
+        "brier": 0.05512304451674392,
+        "slope_rmse": 0.24615196836100187
+      },
+      {
+        "l2": 1000,
+        "auc": 0.7653595407357255,
+        "brier": 0.05782122302683078,
+        "slope_rmse": 0.37178865370654746
+      }
+    ]
+  },
+  "baseline": {
+    "constant_pd_auc": 0.5,
+    "dti_only_auc": 0.6539848510494245,
+    "oracle_auc": 0.7853351387948544
+  },
+  "limitations": [
+    "the fitted model has the true functional form, so results are optimistic",
+    "synthetic data, no real portfolio behaviour",
+    "no out of time test in this module"
+  ],
+  "created": "2026-11-25T05:24:14+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

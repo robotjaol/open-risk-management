@@ -1,0 +1,11 @@
+bond:
+  face: 100.0
+  coupon_rate: 0.05
+  years: 10
+  freq: 2
+  ytm: 0.05
+shock_grid_bp:
+- -300
+- 300
+- 25
+tolerance_pct_of_price: 0.1

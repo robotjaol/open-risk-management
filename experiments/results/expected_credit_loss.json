@@ -1,0 +1,206 @@
+{
+  "module": "expected_credit_loss",
+  "methodology": "Simplified IFRS 9 three stage ECL with constant hazard PD, annuity balance profile, mid year default timing and scenario weighting",
+  "data_kind": "synthetic",
+  "dataset": "datasets/synthetic/loan_book.csv",
+  "n_obs": 5000,
+  "seed": 7,
+  "parameters": {
+    "relative_threshold": 2.0,
+    "absolute_threshold": 0.01,
+    "dpd_stage2": 30,
+    "dpd_stage3": 90,
+    "scenario_multipliers": {
+      "upside": 0.8,
+      "base": 1.0,
+      "downside": 1.6
+    },
+    "scenario_weights": {
+      "upside": 0.2,
+      "base": 0.5,
+      "downside": 0.3
+    },
+    "default_timing": "middle of year",
+    "pd_term_structure": "constant annual hazard"
+  },
+  "assumptions": [
+    "12 month PD per loan is given and a constant hazard extends it to lifetime",
+    "thresholds, scenario multipliers and weights are laboratory assumptions",
+    "staging held at the base case in every scenario",
+    "balance at the start of each year is the exposure at default"
+  ],
+  "metrics": {
+    "total_ead": 161460130.0,
+    "total_ecl": 6930960.347535959,
+    "coverage_pct": 4.2926760603598915,
+    "by_stage": [
+      {
+        "stage": 1,
+        "loans": 3869,
+        "ead": 125436780.0,
+        "ecl": 1979712.58440616,
+        "coverage_pct": 1.5782552648482846
+      },
+      {
+        "stage": 2,
+        "loans": 1068,
+        "ead": 34034210.0,
+        "ecl": 3967345.8811298003,
+        "coverage_pct": 11.656935422123212
+      },
+      {
+        "stage": 3,
+        "loans": 63,
+        "ead": 1989140.0,
+        "ecl": 983901.882,
+        "coverage_pct": 49.463681892677236
+      }
+    ],
+    "scenario_ecl": {
+      "upside": 5902035.022883421,
+      "base": 6930960.347535959,
+      "downside": 9719343.840297464
+    },
+    "scenario_weights": {
+      "upside": 0.2,
+      "base": 0.5,
+      "downside": 0.3
+    },
+    "probability_weighted_ecl": 7561690.330433903,
+    "ecl_at_weighted_mean_pd": 7618042.262550943,
+    "sicr_sensitivity": [
+      {
+        "relative": 1.5,
+        "absolute": 0.005,
+        "stage2_share": 0.3362,
+        "total_ecl": 7668498.455583564,
+        "change_vs_base_pct": 10.64121090102339
+      },
+      {
+        "relative": 1.5,
+        "absolute": 0.01,
+        "stage2_share": 0.3136,
+        "total_ecl": 7615099.697490483,
+        "change_vs_base_pct": 9.870772817186047
+      },
+      {
+        "relative": 1.5,
+        "absolute": 0.02,
+        "stage2_share": 0.2566,
+        "total_ecl": 7386416.598916543,
+        "change_vs_base_pct": 6.5713296360511375
+      },
+      {
+        "relative": 2.0,
+        "absolute": 0.005,
+        "stage2_share": 0.2174,
+        "total_ecl": 6938229.81904337,
+        "change_vs_base_pct": 0.10488404409925156
+      },
+      {
+        "relative": 2.0,
+        "absolute": 0.01,
+        "stage2_share": 0.2136,
+        "total_ecl": 6930960.347535959,
+        "change_vs_base_pct": 0.0
+      },
+      {
+        "relative": 2.0,
+        "absolute": 0.02,
+        "stage2_share": 0.1956,
+        "total_ecl": 6851946.746905895,
+        "change_vs_base_pct": -1.1400094167059338
+      },
+      {
+        "relative": 3.0,
+        "absolute": 0.005,
+        "stage2_share": 0.123,
+        "total_ecl": 6239739.570810422,
+        "change_vs_base_pct": -9.97294374900406
+      },
+      {
+        "relative": 3.0,
+        "absolute": 0.01,
+        "stage2_share": 0.123,
+        "total_ecl": 6239739.570810422,
+        "change_vs_base_pct": -9.97294374900406
+      },
+      {
+        "relative": 3.0,
+        "absolute": 0.02,
+        "stage2_share": 0.1196,
+        "total_ecl": 6225588.950787953,
+        "change_vs_base_pct": -10.177109107236115
+      }
+    ],
+    "cliff_by_remaining_years": [
+      {
+        "remaining_years": 1,
+        "stage1_ecl": 1299.0381056766591,
+        "stage2_ecl": 1299.0381056766591,
+        "jump_ratio": 1.0
+      },
+      {
+        "remaining_years": 2,
+        "stage1_ecl": 1299.0381056766591,
+        "stage2_ecl": 1904.8395299585632,
+        "jump_ratio": 1.4663461538461542
+      },
+      {
+        "remaining_years": 3,
+        "stage1_ecl": 1299.0381056766591,
+        "stage2_ecl": 2482.873811579935,
+        "jump_ratio": 1.9113171513060618
+      },
+      {
+        "remaining_years": 5,
+        "stage1_ecl": 1299.0381056766591,
+        "stage2_ecl": 3559.6375160956522,
+        "jump_ratio": 2.7402102375137516
+      },
+      {
+        "remaining_years": 10,
+        "stage1_ecl": 1299.0381056766591,
+        "stage2_ecl": 5833.1873584954,
+        "jump_ratio": 4.490389722214451
+      },
+      {
+        "remaining_years": 20,
+        "stage1_ecl": 1299.0381056766591,
+        "stage2_ecl": 8947.605893707494,
+        "jump_ratio": 6.887870228446265
+      }
+    ],
+    "top_5pct_loans_share_of_ecl": 0.47062039966957836,
+    "acceptance_checks": {
+      "one_year_closed_form": true,
+      "stage3_equals_lgd_times_ead": true,
+      "lifetime_at_least_12m": true,
+      "ecl_not_above_ead": true,
+      "coverage_rises_with_stage": true
+    },
+    "max_gap_loop_vs_library": 7.275957614183426e-12
+  },
+  "baseline": {
+    "all_loans_treated_as_stage_1_ecl": 4096495.3324668,
+    "note": "12 month ECL with no staging"
+  },
+  "limitations": [
+    "no collateral timing, no cure rates, no prepayment, no off balance sheet exposure",
+    "constant hazard ignores the PD term structure",
+    "synthetic book, not a real portfolio"
+  ],
+  "created": "2026-11-25T05:24:20+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

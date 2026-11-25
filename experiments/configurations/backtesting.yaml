@@ -1,0 +1,10 @@
+alpha: 0.99
+window: 500
+ewma_decay: 0.94
+nu_used: 3.0
+evaluation_days:
+- 1000
+- 3000
+power_simulations: 20000
+markov_paths: 5000
+seed: 42
