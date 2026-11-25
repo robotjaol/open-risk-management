@@ -1,0 +1,27 @@
+title: S&P 500 composite, monthly, with dividends, earnings, CPI and 10 year rate
+kind: empirical
+license: ODC-PDDL-1.0 (Open Data Commons Public Domain Dedication and License)
+source: Robert Shiller dataset extended with FRED data, via github.com/datasets/s-and-p-500
+source_url: https://raw.githubusercontent.com/datasets/s-and-p-500/main/data/data.csv
+target: none
+observation_period: 1871-01-01 to 2026-09-01
+changes: none, file copied as downloaded
+leakage_risks: Not applicable, there is no prediction target.
+representativeness: US equity index only. Monthly values are averages or end points as defined by the
+  source.
+name: sp500_shiller_monthly
+file: datasets/raw/sp500_shiller_monthly.csv
+rows: 1869
+columns:
+- Date
+- SP500
+- Dividend
+- Earnings
+- Consumer Price Index
+- Long Interest Rate
+- Real Price
+- Real Dividend
+- Real Earnings
+- PE10
+sha256: 66215c2017b7ac0cdd62e89211a93494ae43d47c4595d8b9de957a17b71d14b9
+access_date: '2026-11-25'

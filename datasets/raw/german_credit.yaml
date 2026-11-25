@@ -1,0 +1,43 @@
+title: Statlog (German Credit Data), 1000 loan applicants, decoded labels
+kind: empirical
+license: CC BY 4.0
+source: Hofmann, H. (1994). Statlog (German Credit Data). UCI Machine Learning Repository. https://doi.org/10.24432/C5NC77
+source_url: https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data
+obtained_via: scorecardpy 0.1.9.7 (MIT) sdist, file scorecardpy/data/germancredit.csv, which holds the
+  same table with text labels instead of A11 style codes. Row and column counts match the UCI page. A
+  cell by cell comparison with the UCI file was not run.
+target: creditability (good or bad). UCI codes 1 = good and 2 = bad. UCI gives a cost matrix where a bad
+  loan accepted costs 5 and a good loan refused costs 1.
+observation_period: none, cross section, collected in Germany, year not stated on the UCI page
+changes: none, file copied from the package
+leakage_risks: No feature is built from the target. Personal status and sex and foreign worker are protected
+  style attributes and must not be used for decisions in practice.
+representativeness: 1000 applicants of one German source, 30 percent bad by construction of the sample.
+  Not representative of any current portfolio.
+name: german_credit
+file: datasets/raw/german_credit.csv
+rows: 1000
+columns:
+- status_of_existing_checking_account
+- duration_in_month
+- credit_history
+- purpose
+- credit_amount
+- savings_account_and_bonds
+- present_employment_since
+- installment_rate_in_percentage_of_disposable_income
+- personal_status_and_sex
+- other_debtors_or_guarantors
+- present_residence_since
+- property
+- age_in_years
+- other_installment_plans
+- housing
+- number_of_existing_credits_at_this_bank
+- job
+- number_of_people_being_liable_to_provide_maintenance_for
+- telephone
+- foreign_worker
+- creditability
+sha256: 01f2981fc8f44de5ed05b904318afb1e78390c34def2cb46015e0c3f99be286c
+access_date: '2026-11-25'

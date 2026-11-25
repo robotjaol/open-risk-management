@@ -1,0 +1,12 @@
+weights:
+  equity: 0.6
+  bond: 0.4
+value_usd: 100000000.0
+loss_appetite: 0.2
+var_window_months: 240
+alpha: 0.99
+bond:
+  maturity_years: 10
+  freq: 2
+  par: true
+seed: 42

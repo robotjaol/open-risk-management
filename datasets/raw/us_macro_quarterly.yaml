@@ -1,0 +1,30 @@
+title: US macroeconomic quarterly data 1959Q1 to 2009Q3
+kind: empirical
+license: public domain, as stated in the statsmodels dataset copyright note
+source: statsmodels.datasets.macrodata (US Bureau of Economic Analysis and related US government series)
+source_url: https://www.statsmodels.org/stable/datasets/generated/macrodata.html
+target: none
+observation_period: 1959Q1 to 2009Q3
+changes: none, loaded from the installed statsmodels package
+leakage_risks: Not applicable, there is no prediction target.
+representativeness: US data that ends in 2009. It contains the 2008 crisis but not recent years.
+name: us_macro_quarterly
+file: datasets/raw/us_macro_quarterly.csv
+rows: 203
+columns:
+- year
+- quarter
+- realgdp
+- realcons
+- realinv
+- realgovt
+- realdpi
+- cpi
+- m1
+- tbilrate
+- unemp
+- pop
+- infl
+- realint
+sha256: 242dee4a4188894324cf152b49e31e1687e359cfdbc2ea5a2f8a69a9d0e1a849
+access_date: '2026-11-25'

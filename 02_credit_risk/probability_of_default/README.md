@@ -33,7 +33,7 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/probability_of_default.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/retail_loans_dev.csv`. Observations: 15000. Seed: 42. Created: 2026-11-25T05:24:14+00:00.
+Source: `experiments/results/probability_of_default.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/retail_loans_dev.csv`. Observations: 15000. Seed: 42. Created: 2026-11-25T05:53:02+00:00.
 
 | Metric | Value |
 |---|---|

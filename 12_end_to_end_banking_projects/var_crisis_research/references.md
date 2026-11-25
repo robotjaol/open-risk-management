@@ -1,0 +1,34 @@
+# References for Research Simulation: Does a Calm Period VaR Survive a Crisis
+
+## Techniques for verifying the accuracy of risk measurement models
+
+- Authors: Kupiec, P. H.
+- Year: 1995
+- Venue or issuer: Finance and Economics Discussion Series 95-24, Board of Governors of the Federal Reserve System
+- Link: https://fraser.stlouisfed.org/title/1491/item/717921
+- Type: academic
+- Status: current
+- Verification: verified: Fed FRASER and EconPapers records, web search 2026-11-25
+- Contribution: Introduces the proportion of failures likelihood ratio test for VaR exceptions and discusses its low power on short samples. The Journal of Derivatives version was not checked.
+
+## Evaluating interval forecasts
+
+- Authors: Christoffersen, P. F.
+- Year: 1998
+- Venue or issuer: International Economic Review 39(4):841-862
+- Link: https://doi.org/10.2307/2527341
+- Type: academic
+- Status: current
+- Verification: verified: RePEc IDEAS and EconPapers records, web search 2026-11-25
+- Contribution: Defines unconditional coverage, independence and conditional coverage tests for interval forecasts. VaR exceptions are a special case.
+
+## Minimum capital requirements for market risk (BCBS d457)
+
+- Authors: Basel Committee on Banking Supervision
+- Year: 2019
+- Venue or issuer: Bank for International Settlements, 14 January 2019 (rev. February 2019), consolidated into the Basel Framework
+- Link: https://www.bis.org/bcbs/publ/d457.htm
+- Type: regulatory
+- Status: integrated into the consolidated Basel Framework
+- Verification: verified: BIS page, web search 2026-11-25
+- Contribution: Revised market risk framework. The internal models approach uses expected shortfall, and the standard supersedes the January 2016 version (d352).

@@ -121,7 +121,7 @@
     "no position level revaluation, linear portfolio only",
     "iid bootstrap understates uncertainty when volatility clusters"
   ],
-  "created": "2026-11-25T05:24:27+00:00",
+  "created": "2026-11-25T05:53:12+00:00",
   "environment": {
     "python": "3.13.18",
     "platform": "Linux",

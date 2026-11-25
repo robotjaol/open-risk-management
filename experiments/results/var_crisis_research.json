@@ -1,0 +1,1035 @@
+{
+  "module": "var_crisis_research",
+  "methodology": "Pre stated hypotheses on exception rates of a historical and an EWMA t VaR in crisis windows, Kupiec tests, exact intervals, sensitivity grid",
+  "data_kind": "empirical",
+  "dataset": "datasets/raw/wti_spot_daily.csv and datasets/processed/fx_daily_2000.csv",
+  "n_obs": 16284,
+  "seed": 42,
+  "parameters": {
+    "alpha": 0.99,
+    "windows": {
+      "gfc": [
+        "2008-09-01",
+        "2009-06-30"
+      ],
+      "oil_collapse": [
+        "2014-06-01",
+        "2016-02-29"
+      ],
+      "covid": [
+        "2020-02-20",
+        "2020-06-30"
+      ],
+      "ukraine": [
+        "2022-02-24",
+        "2022-12-31"
+      ]
+    },
+    "currencies": [
+      "Euro",
+      "Japan",
+      "United Kingdom",
+      "Switzerland",
+      "Canada",
+      "Singapore"
+    ],
+    "hist_windows": [
+      250,
+      500,
+      1000
+    ],
+    "ewma_decay": 0.94,
+    "ewma_nu": 4,
+    "seed": 42
+  },
+  "assumptions": [
+    "crisis windows are calendar dates chosen by the author from well known events",
+    "equal dollar weight FX basket rebalanced daily",
+    "days with undefined WTI returns are dropped",
+    "the author ran an exploratory version before fixing the rules"
+  ],
+  "metrics": {
+    "assets": {
+      "WTI": {
+        "returns": 9544,
+        "evaluation_days": 8544
+      },
+      "FX basket": {
+        "returns": 6740,
+        "evaluation_days": 5740
+      }
+    },
+    "excluded_wti_return_days": [
+      "2020-04-20",
+      "2020-04-21"
+    ],
+    "crisis_windows": {
+      "gfc": [
+        "2008-09-01",
+        "2009-06-30"
+      ],
+      "oil_collapse": [
+        "2014-06-01",
+        "2016-02-29"
+      ],
+      "covid": [
+        "2020-02-20",
+        "2020-06-30"
+      ],
+      "ukraine": [
+        "2022-02-24",
+        "2022-12-31"
+      ]
+    },
+    "hypothesis_outcomes_by_asset": {
+      "WTI": {
+        "H1": true,
+        "H2": true,
+        "gap_hist500": 0.04313496280552603,
+        "gap_ewma_t4": 0.002752391073326239
+      },
+      "FX basket": {
+        "H1": true,
+        "H2": true,
+        "gap_hist500": 0.02470031545741324,
+        "gap_ewma_t4": 0.002618296529968445
+      }
+    },
+    "hypothesis_outcomes_overall": {
+      "H1": true,
+      "H2": true
+    },
+    "evaluation_table": [
+      {
+        "asset": "WTI",
+        "model": "hist250",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 9,
+        "rate": 0.04326923076923077,
+        "kupiec_p": 0.0003536155246960054,
+        "ci_low": 0.019973511746812975,
+        "ci_high": 0.08054683174559898
+      },
+      {
+        "asset": "WTI",
+        "model": "hist250",
+        "period": "oil_collapse",
+        "days": 428,
+        "exceptions": 13,
+        "rate": 0.030373831775700934,
+        "kupiec_p": 0.0006501517545844994,
+        "ci_low": 0.016269886704678334,
+        "ci_high": 0.0513801504088575
+      },
+      {
+        "asset": "WTI",
+        "model": "hist250",
+        "period": "covid",
+        "days": 90,
+        "exceptions": 7,
+        "rate": 0.07777777777777778,
+        "kupiec_p": 3.847284149560815e-05,
+        "ci_low": 0.03184256312131947,
+        "ci_high": 0.15370610808194296
+      },
+      {
+        "asset": "WTI",
+        "model": "hist250",
+        "period": "ukraine",
+        "days": 215,
+        "exceptions": 4,
+        "rate": 0.018604651162790697,
+        "kupiec_p": 0.25739050770419075,
+        "ci_low": 0.005091833543556787,
+        "ci_high": 0.046947649988545566
+      },
+      {
+        "asset": "WTI",
+        "model": "hist250",
+        "period": "crisis_pooled",
+        "days": 941,
+        "exceptions": 33,
+        "rate": 0.03506907545164718,
+        "kupiec_p": 1.7490604661160503e-09,
+        "ci_low": 0.02426052969541078,
+        "ci_high": 0.04889952586178007
+      },
+      {
+        "asset": "WTI",
+        "model": "hist250",
+        "period": "calm",
+        "days": 7603,
+        "exceptions": 105,
+        "rate": 0.013810338024464028,
+        "kupiec_p": 0.00159419657259849,
+        "ci_low": 0.011309007498472027,
+        "ci_high": 0.016693890277286457
+      },
+      {
+        "asset": "WTI",
+        "model": "hist500",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 17,
+        "rate": 0.08173076923076923,
+        "kupiec_p": 6.391425958262172e-11,
+        "ci_low": 0.04833165329395044,
+        "ci_high": 0.12763442116826942
+      },
+      {
+        "asset": "WTI",
+        "model": "hist500",
+        "period": "oil_collapse",
+        "days": 428,
+        "exceptions": 21,
+        "rate": 0.04906542056074766,
+        "kupiec_p": 5.419803314531399e-09,
+        "ci_low": 0.03062531580605838,
+        "ci_high": 0.07402612272035629
+      },
+      {
+        "asset": "WTI",
+        "model": "hist500",
+        "period": "covid",
+        "days": 90,
+        "exceptions": 9,
+        "rate": 0.1,
+        "kupiec_p": 3.403081251507722e-07,
+        "ci_low": 0.04675531527416432,
+        "ci_high": 0.1813599728839319
+      },
+      {
+        "asset": "WTI",
+        "model": "hist500",
+        "period": "ukraine",
+        "days": 215,
+        "exceptions": 3,
+        "rate": 0.013953488372093023,
+        "kupiec_p": 0.5824655570096102,
+        "ci_low": 0.002886840564879852,
+        "ci_high": 0.040234275511794745
+      },
+      {
+        "asset": "WTI",
+        "model": "hist500",
+        "period": "crisis_pooled",
+        "days": 941,
+        "exceptions": 50,
+        "rate": 0.053134962805526036,
+        "kupiec_p": 7.85285241399947e-21,
+        "ci_low": 0.03969153207265941,
+        "ci_high": 0.06945495979673941
+      },
+      {
+        "asset": "WTI",
+        "model": "hist500",
+        "period": "calm",
+        "days": 7603,
+        "exceptions": 83,
+        "rate": 0.010916743390766802,
+        "kupiec_p": 0.4285502208292675,
+        "ci_low": 0.00870424401411643,
+        "ci_high": 0.013515212009564143
+      },
+      {
+        "asset": "WTI",
+        "model": "hist1000",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 20,
+        "rate": 0.09615384615384616,
+        "kupiec_p": 6.217235877108165e-14,
+        "ci_low": 0.059727267734230455,
+        "ci_high": 0.14459276259858667
+      },
+      {
+        "asset": "WTI",
+        "model": "hist1000",
+        "period": "oil_collapse",
+        "days": 428,
+        "exceptions": 19,
+        "rate": 0.04439252336448598,
+        "kupiec_p": 1.4050565479852667e-07,
+        "ci_low": 0.026935548792619148,
+        "ci_high": 0.0684583169824687
+      },
+      {
+        "asset": "WTI",
+        "model": "hist1000",
+        "period": "covid",
+        "days": 90,
+        "exceptions": 14,
+        "rate": 0.15555555555555556,
+        "kupiec_p": 3.9422119611009587e-13,
+        "ci_low": 0.08773586461618245,
+        "ci_high": 0.24720258014551574
+      },
+      {
+        "asset": "WTI",
+        "model": "hist1000",
+        "period": "ukraine",
+        "days": 215,
+        "exceptions": 1,
+        "rate": 0.004651162790697674,
+        "kupiec_p": 0.378592748034588,
+        "ci_low": 0.00011775031332615733,
+        "ci_high": 0.025640774929679474
+      },
+      {
+        "asset": "WTI",
+        "model": "hist1000",
+        "period": "crisis_pooled",
+        "days": 941,
+        "exceptions": 54,
+        "rate": 0.057385759829968117,
+        "kupiec_p": 6.499412473979585e-24,
+        "ci_low": 0.04340040430580024,
+        "ci_high": 0.07421579544238702
+      },
+      {
+        "asset": "WTI",
+        "model": "hist1000",
+        "period": "calm",
+        "days": 7603,
+        "exceptions": 70,
+        "rate": 0.009206892016309351,
+        "kupiec_p": 0.4811553834541312,
+        "ci_low": 0.007184056271547451,
+        "ci_high": 0.011618227269706956
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_normal",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 1,
+        "rate": 0.004807692307692308,
+        "kupiec_p": 0.40247517941788546,
+        "ci_low": 0.00012171282308697628,
+        "ci_high": 0.026494219352822878
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_normal",
+        "period": "oil_collapse",
+        "days": 428,
+        "exceptions": 11,
+        "rate": 0.02570093457943925,
+        "kupiec_p": 0.006400740920169577,
+        "ci_low": 0.012898092745940695,
+        "ci_high": 0.04552002557903005
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_normal",
+        "period": "covid",
+        "days": 90,
+        "exceptions": 5,
+        "rate": 0.05555555555555555,
+        "kupiec_p": 0.0025013427393670955,
+        "ci_low": 0.018282545814883592,
+        "ci_high": 0.12490266592901705
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_normal",
+        "period": "ukraine",
+        "days": 215,
+        "exceptions": 5,
+        "rate": 0.023255813953488372,
+        "kupiec_p": 0.09556548160461201,
+        "ci_low": 0.007593239883846923,
+        "ci_high": 0.05343395055077908
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_normal",
+        "period": "crisis_pooled",
+        "days": 941,
+        "exceptions": 22,
+        "rate": 0.023379383634431455,
+        "kupiec_p": 0.0004389179741585969,
+        "ci_low": 0.014708379367344631,
+        "ci_high": 0.03518365675685993
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_normal",
+        "period": "calm",
+        "days": 7603,
+        "exceptions": 145,
+        "rate": 0.0190714191766408,
+        "kupiec_p": 1.601782232592162e-12,
+        "ci_low": 0.01611666586983795,
+        "ci_high": 0.022402522970315926
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_t4",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 0,
+        "rate": 0.0,
+        "kupiec_p": 0.04088102736021266,
+        "ci_low": 0.0,
+        "ci_high": 0.017578657900630724
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_t4",
+        "period": "oil_collapse",
+        "days": 428,
+        "exceptions": 6,
+        "rate": 0.014018691588785047,
+        "kupiec_p": 0.4307988080826449,
+        "ci_low": 0.005161527704891344,
+        "ci_high": 0.030261731204348764
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_t4",
+        "period": "covid",
+        "days": 90,
+        "exceptions": 3,
+        "rate": 0.03333333333333333,
+        "kupiec_p": 0.0795669473828478,
+        "ci_low": 0.0069276027310101644,
+        "ci_high": 0.09433609341313619
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_t4",
+        "period": "ukraine",
+        "days": 215,
+        "exceptions": 3,
+        "rate": 0.013953488372093023,
+        "kupiec_p": 0.5824655570096102,
+        "ci_low": 0.002886840564879852,
+        "ci_high": 0.040234275511794745
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_t4",
+        "period": "crisis_pooled",
+        "days": 941,
+        "exceptions": 12,
+        "rate": 0.012752391073326248,
+        "kupiec_p": 0.4157082660235103,
+        "ci_low": 0.0066062355946933625,
+        "ci_high": 0.022169811911139817
+      },
+      {
+        "asset": "WTI",
+        "model": "ewma_t4",
+        "period": "calm",
+        "days": 7603,
+        "exceptions": 86,
+        "rate": 0.01131132447718006,
+        "kupiec_p": 0.26034323424133965,
+        "ci_low": 0.009057280294614691,
+        "ci_high": 0.013950793372350733
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist250",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 5,
+        "rate": 0.02403846153846154,
+        "kupiec_p": 0.08470115874494917,
+        "ci_low": 0.007850262347021438,
+        "ci_high": 0.0552032318069258
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist250",
+        "period": "oil_collapse",
+        "days": 436,
+        "exceptions": 11,
+        "rate": 0.02522935779816514,
+        "kupiec_p": 0.0073639275001773745,
+        "ci_low": 0.012660188117944017,
+        "ci_high": 0.044693183861874757
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist250",
+        "period": "covid",
+        "days": 93,
+        "exceptions": 5,
+        "rate": 0.053763440860215055,
+        "kupiec_p": 0.002910545563999728,
+        "ci_low": 0.0176849998060787,
+        "ci_high": 0.12101998311409688
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist250",
+        "period": "ukraine",
+        "days": 214,
+        "exceptions": 7,
+        "rate": 0.03271028037383177,
+        "kupiec_p": 0.008225033606856506,
+        "ci_low": 0.013250453066779673,
+        "ci_high": 0.0662316013734737
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist250",
+        "period": "crisis_pooled",
+        "days": 951,
+        "exceptions": 28,
+        "rate": 0.029442691903259727,
+        "kupiec_p": 1.0372490237315943e-06,
+        "ci_low": 0.01965172968235258,
+        "ci_high": 0.042273208277421266
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist250",
+        "period": "calm",
+        "days": 4789,
+        "exceptions": 53,
+        "rate": 0.01106702860722489,
+        "kupiec_p": 0.4656244451875243,
+        "ci_low": 0.008300649026606545,
+        "ci_high": 0.01445123456803861
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist500",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 9,
+        "rate": 0.04326923076923077,
+        "kupiec_p": 0.0003536155246960054,
+        "ci_low": 0.019973511746812975,
+        "ci_high": 0.08054683174559898
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist500",
+        "period": "oil_collapse",
+        "days": 436,
+        "exceptions": 8,
+        "rate": 0.01834862385321101,
+        "kupiec_p": 0.11660834275717855,
+        "ci_low": 0.007954091674983847,
+        "ci_high": 0.0358327881516604
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist500",
+        "period": "covid",
+        "days": 93,
+        "exceptions": 8,
+        "rate": 0.08602150537634409,
+        "kupiec_p": 4.968082876729333e-06,
+        "ci_low": 0.03787203609336515,
+        "ci_high": 0.16247724337801658
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist500",
+        "period": "ukraine",
+        "days": 214,
+        "exceptions": 8,
+        "rate": 0.037383177570093455,
+        "kupiec_p": 0.002008476198310231,
+        "ci_low": 0.016275203167852033,
+        "ci_high": 0.07232834384268468
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist500",
+        "period": "crisis_pooled",
+        "days": 951,
+        "exceptions": 33,
+        "rate": 0.03470031545741325,
+        "kupiec_p": 2.2713477853474167e-09,
+        "ci_low": 0.02400415374094776,
+        "ci_high": 0.04838899563493086
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist500",
+        "period": "calm",
+        "days": 4789,
+        "exceptions": 42,
+        "rate": 0.008770098141574442,
+        "kupiec_p": 0.3822671535135572,
+        "ci_low": 0.00632781782204703,
+        "ci_high": 0.011836322388878533
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist1000",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 11,
+        "rate": 0.052884615384615384,
+        "kupiec_p": 1.1810249535769462e-05,
+        "ci_low": 0.0266921328576618,
+        "ci_high": 0.09265341360398446
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist1000",
+        "period": "oil_collapse",
+        "days": 436,
+        "exceptions": 7,
+        "rate": 0.016055045871559634,
+        "kupiec_p": 0.2427913813756839,
+        "ci_low": 0.006478699588239191,
+        "ci_high": 0.03279851491799154
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist1000",
+        "period": "covid",
+        "days": 93,
+        "exceptions": 5,
+        "rate": 0.053763440860215055,
+        "kupiec_p": 0.002910545563999728,
+        "ci_low": 0.0176849998060787,
+        "ci_high": 0.12101998311409688
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist1000",
+        "period": "ukraine",
+        "days": 214,
+        "exceptions": 11,
+        "rate": 0.0514018691588785,
+        "kupiec_p": 1.5526433846466964e-05,
+        "ci_low": 0.02593562063740048,
+        "ci_high": 0.09010931365129692
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist1000",
+        "period": "crisis_pooled",
+        "days": 951,
+        "exceptions": 34,
+        "rate": 0.035751840168243953,
+        "kupiec_p": 6.079455115717282e-10,
+        "ci_low": 0.024883835775715953,
+        "ci_high": 0.04960333810291792
+      },
+      {
+        "asset": "FX basket",
+        "model": "hist1000",
+        "period": "calm",
+        "days": 4789,
+        "exceptions": 38,
+        "rate": 0.007934850699519732,
+        "kupiec_p": 0.13621063536829028,
+        "ci_low": 0.005621115491659536,
+        "ci_high": 0.010875088775694477
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_normal",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 1,
+        "rate": 0.004807692307692308,
+        "kupiec_p": 0.40247517941788546,
+        "ci_low": 0.00012171282308697628,
+        "ci_high": 0.026494219352822878
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_normal",
+        "period": "oil_collapse",
+        "days": 436,
+        "exceptions": 12,
+        "rate": 0.027522935779816515,
+        "kupiec_p": 0.002481122199911251,
+        "ci_low": 0.014300638624604959,
+        "ci_high": 0.04758315882014034
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_normal",
+        "period": "covid",
+        "days": 93,
+        "exceptions": 3,
+        "rate": 0.03225806451612903,
+        "kupiec_p": 0.08673288133327,
+        "ci_low": 0.006702440584782255,
+        "ci_high": 0.09138779483020228
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_normal",
+        "period": "ukraine",
+        "days": 214,
+        "exceptions": 2,
+        "rate": 0.009345794392523364,
+        "kupiec_p": 0.9225264853654415,
+        "ci_low": 0.0011338297797006639,
+        "ci_high": 0.033350606644631936
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_normal",
+        "period": "crisis_pooled",
+        "days": 951,
+        "exceptions": 18,
+        "rate": 0.01892744479495268,
+        "kupiec_p": 0.013782473993259088,
+        "ci_low": 0.011255218549802989,
+        "ci_high": 0.029749077130587095
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_normal",
+        "period": "calm",
+        "days": 4789,
+        "exceptions": 66,
+        "rate": 0.013781582793902694,
+        "kupiec_p": 0.012861916661084369,
+        "ci_low": 0.010674276134145705,
+        "ci_high": 0.017500591208423243
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_t4",
+        "period": "gfc",
+        "days": 208,
+        "exceptions": 0,
+        "rate": 0.0,
+        "kupiec_p": 0.04088102736021266,
+        "ci_low": 0.0,
+        "ci_high": 0.017578657900630724
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_t4",
+        "period": "oil_collapse",
+        "days": 436,
+        "exceptions": 8,
+        "rate": 0.01834862385321101,
+        "kupiec_p": 0.11660834275717855,
+        "ci_low": 0.007954091674983847,
+        "ci_high": 0.0358327881516604
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_t4",
+        "period": "covid",
+        "days": 93,
+        "exceptions": 3,
+        "rate": 0.03225806451612903,
+        "kupiec_p": 0.08673288133327,
+        "ci_low": 0.006702440584782255,
+        "ci_high": 0.09138779483020228
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_t4",
+        "period": "ukraine",
+        "days": 214,
+        "exceptions": 1,
+        "rate": 0.004672897196261682,
+        "kupiec_p": 0.3819203037776654,
+        "ci_low": 0.00011830051588732894,
+        "ci_high": 0.025759313853270637
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_t4",
+        "period": "crisis_pooled",
+        "days": 951,
+        "exceptions": 12,
+        "rate": 0.012618296529968454,
+        "kupiec_p": 0.4355049285925454,
+        "ci_low": 0.006536592788322468,
+        "ci_high": 0.021937794039626965
+      },
+      {
+        "asset": "FX basket",
+        "model": "ewma_t4",
+        "period": "calm",
+        "days": 4789,
+        "exceptions": 33,
+        "rate": 0.006890791396951347,
+        "kupiec_p": 0.021967329750133272,
+        "ci_low": 0.004747912839721862,
+        "ci_high": 0.00966374097913564
+      }
+    ],
+    "cost_in_calm_and_crisis": [
+      {
+        "asset": "WTI",
+        "calm_mean_var_ratio_ewma_t4_to_hist500": 0.8838143414393134,
+        "crisis_mean_var_ratio_ewma_t4_to_hist500": 1.5868136015130434
+      },
+      {
+        "asset": "FX basket",
+        "calm_mean_var_ratio_ewma_t4_to_hist500": 0.9823319224589012,
+        "crisis_mean_var_ratio_ewma_t4_to_hist500": 1.3953455791392126
+      }
+    ],
+    "christoffersen_independence_p": {
+      "WTI": {
+        "hist250": 0.009013246253383438,
+        "hist500": 4.556357994947262e-05,
+        "hist1000": 2.145286449532375e-07,
+        "ewma_normal": 0.16524229041067967,
+        "ewma_t4": 0.4507820699082574
+      },
+      "FX basket": {
+        "hist250": 0.0010212582613451661,
+        "hist500": 0.003176993212746932,
+        "hist1000": 0.01441916963877568,
+        "ewma_normal": 0.8282621140547478,
+        "ewma_t4": 0.36869606762883755
+      }
+    },
+    "sensitivity_grid": [
+      {
+        "asset": "WTI",
+        "config": "hist250",
+        "crisis_rate": 0.03506907545164718,
+        "calm_rate": 0.013810338024464028,
+        "days": 8544,
+        "crisis_gap": 0.025069075451647174
+      },
+      {
+        "asset": "WTI",
+        "config": "hist500",
+        "crisis_rate": 0.053134962805526036,
+        "calm_rate": 0.010916743390766802,
+        "days": 8544,
+        "crisis_gap": 0.04313496280552603
+      },
+      {
+        "asset": "WTI",
+        "config": "hist1000",
+        "crisis_rate": 0.057385759829968117,
+        "calm_rate": 0.009206892016309351,
+        "days": 8544,
+        "crisis_gap": 0.04738575982996811
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.94_nuNone",
+        "crisis_rate": 0.023379383634431455,
+        "calm_rate": 0.0190714191766408,
+        "days": 8544,
+        "crisis_gap": 0.013379383634431447
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.94_nu3.5",
+        "crisis_rate": 0.012752391073326248,
+        "calm_rate": 0.011048270419571222,
+        "days": 8544,
+        "crisis_gap": 0.002752391073326239
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.94_nu4",
+        "crisis_rate": 0.012752391073326248,
+        "calm_rate": 0.01131132447718006,
+        "days": 8544,
+        "crisis_gap": 0.002752391073326239
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.94_nu6",
+        "crisis_rate": 0.01487778958554729,
+        "calm_rate": 0.01341575693805077,
+        "days": 8544,
+        "crisis_gap": 0.004877789585547281
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.94_nu10",
+        "crisis_rate": 0.018065887353878853,
+        "calm_rate": 0.015520189398921478,
+        "days": 8544,
+        "crisis_gap": 0.008065887353878844
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.97_nuNone",
+        "crisis_rate": 0.021253985122210415,
+        "calm_rate": 0.01762462185979219,
+        "days": 8544,
+        "crisis_gap": 0.011253985122210406
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.97_nu3.5",
+        "crisis_rate": 0.012752391073326248,
+        "calm_rate": 0.009338419045113771,
+        "days": 8544,
+        "crisis_gap": 0.002752391073326239
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.97_nu4",
+        "crisis_rate": 0.012752391073326248,
+        "calm_rate": 0.009338419045113771,
+        "days": 8544,
+        "crisis_gap": 0.002752391073326239
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.97_nu6",
+        "crisis_rate": 0.01487778958554729,
+        "calm_rate": 0.010653689333157964,
+        "days": 8544,
+        "crisis_gap": 0.004877789585547281
+      },
+      {
+        "asset": "WTI",
+        "config": "ewma0.97_nu10",
+        "crisis_rate": 0.015940488841657812,
+        "calm_rate": 0.012889648822833092,
+        "days": 8544,
+        "crisis_gap": 0.005940488841657803
+      },
+      {
+        "asset": "FX basket",
+        "config": "hist250",
+        "crisis_rate": 0.029442691903259727,
+        "calm_rate": 0.01106702860722489,
+        "days": 5740,
+        "crisis_gap": 0.01944269190325972
+      },
+      {
+        "asset": "FX basket",
+        "config": "hist500",
+        "crisis_rate": 0.03470031545741325,
+        "calm_rate": 0.008770098141574442,
+        "days": 5740,
+        "crisis_gap": 0.02470031545741324
+      },
+      {
+        "asset": "FX basket",
+        "config": "hist1000",
+        "crisis_rate": 0.035751840168243953,
+        "calm_rate": 0.007934850699519732,
+        "days": 5740,
+        "crisis_gap": 0.025751840168243945
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.94_nuNone",
+        "crisis_rate": 0.01892744479495268,
+        "calm_rate": 0.013781582793902694,
+        "days": 5740,
+        "crisis_gap": 0.008927444794952673
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.94_nu3.5",
+        "crisis_rate": 0.012618296529968454,
+        "calm_rate": 0.006890791396951347,
+        "days": 5740,
+        "crisis_gap": 0.002618296529968445
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.94_nu4",
+        "crisis_rate": 0.012618296529968454,
+        "calm_rate": 0.006890791396951347,
+        "days": 5740,
+        "crisis_gap": 0.002618296529968445
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.94_nu6",
+        "crisis_rate": 0.013669821240799159,
+        "calm_rate": 0.00814366256003341,
+        "days": 5740,
+        "crisis_gap": 0.00366982124079915
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.94_nu10",
+        "crisis_rate": 0.014721345951629864,
+        "calm_rate": 0.00960534558362915,
+        "days": 5740,
+        "crisis_gap": 0.004721345951629855
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.97_nuNone",
+        "crisis_rate": 0.01892744479495268,
+        "calm_rate": 0.0119022760492796,
+        "days": 5740,
+        "crisis_gap": 0.008927444794952673
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.97_nu3.5",
+        "crisis_rate": 0.013669821240799159,
+        "calm_rate": 0.00522029651284193,
+        "days": 5740,
+        "crisis_gap": 0.00366982124079915
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.97_nu4",
+        "crisis_rate": 0.013669821240799159,
+        "calm_rate": 0.00522029651284193,
+        "days": 5740,
+        "crisis_gap": 0.00366982124079915
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.97_nu6",
+        "crisis_rate": 0.013669821240799159,
+        "calm_rate": 0.007308415117978701,
+        "days": 5740,
+        "crisis_gap": 0.00366982124079915
+      },
+      {
+        "asset": "FX basket",
+        "config": "ewma0.97_nu10",
+        "crisis_rate": 0.015772870662460567,
+        "calm_rate": 0.00814366256003341,
+        "days": 5740,
+        "crisis_gap": 0.005772870662460558
+      }
+    ],
+    "share_t_ewma_configs_beating_hist500": 1.0,
+    "scratch_vs_library_max_gap": 0.0,
+    "acceptance_criteria": {
+      "scratch_matches_library_no_lookahead_1e-12": true,
+      "windows_inside_data_with_80_days": true,
+      "excluded_wti_days_match_independent_rule": true,
+      "hypotheses_evaluated_for_both_assets": true
+    }
+  },
+  "baseline": "500 day historical VaR at 99 percent",
+  "limitations": [
+    "two assets only, one FX basket and one commodity",
+    "crisis windows are few and chosen with hindsight about which periods were crises",
+    "exceptions cluster, so exact intervals and Kupiec p values are too optimistic",
+    "single day VaR on linear positions, no ten day horizon and no capital calculation"
+  ],
+  "figures": [
+    "exception_rate_by_period.png",
+    "wti_gfc_var_paths.png"
+  ],
+  "created": "2026-11-25T05:53:31+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

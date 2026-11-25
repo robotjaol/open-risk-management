@@ -71,6 +71,7 @@ PLAN = {
         "credit_risk_engine", "market_risk_engine", "liquidity_risk_dashboard",
         "operational_risk_framework", "basel_capital_calculator", "ifrs9_ecl_engine",
         "aml_monitoring_system", "alm_simulator", "integrated_bank_risk_platform",
+        "var_crisis_research", "daily_market_risk_desk", "credit_decision_cutoff", "historical_stress_replay",
     ],
     "13_risk_management_in_other_industries": [
         "insurance", "manufacturing", "energy_and_oil_gas", "technology", "healthcare",

@@ -41,13 +41,16 @@ def write_paper_catalog():
 def write_dataset_catalog():
     path = ROOT / "datasets" / "catalog.csv"
     rows = []
-    for card in sorted((ROOT / "datasets" / "synthetic").glob("*.yaml")):
+    cards = []
+    for folder in ["synthetic", "raw", "processed"]:
+        cards += sorted((ROOT / "datasets" / folder).glob("*.yaml"))
+    for card in cards:
         meta = yaml.safe_load(card.read_text())
         rows.append([meta["name"], meta["kind"], meta["file"], meta["rows"], len(meta["columns"]),
-                     meta["license"], meta["sha256"], meta["title"]])
+                     meta["license"], meta["sha256"], meta["title"], meta.get("source_url", "generated in this repository")])
     with path.open("w", newline="") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["name", "kind", "file", "rows", "columns", "license", "sha256", "title"])
+        writer.writerow(["name", "kind", "file", "rows", "columns", "license", "sha256", "title", "source"])
         writer.writerows(rows)
     return path
 

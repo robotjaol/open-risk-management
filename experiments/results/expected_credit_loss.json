@@ -190,7 +190,7 @@
     "constant hazard ignores the PD term structure",
     "synthetic book, not a real portfolio"
   ],
-  "created": "2026-11-25T05:24:20+00:00",
+  "created": "2026-11-25T05:53:08+00:00",
   "environment": {
     "python": "3.13.18",
     "platform": "Linux",

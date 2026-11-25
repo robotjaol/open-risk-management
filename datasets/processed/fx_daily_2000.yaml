@@ -1,0 +1,28 @@
+title: Daily exchange rates, 10 currencies, from 2000, wide format
+kind: empirical
+license: ODC-PDDL-1.0 (Open Data Commons Public Domain Dedication and License)
+source: Federal Reserve Bank of St. Louis (FRED) exchange rates, via github.com/datasets/exchange-rates
+source_url: https://raw.githubusercontent.com/datasets/exchange-rates/main/data/daily.csv
+target: none
+observation_period: 2000-01-03 to 2026-11-20
+changes: kept 10 countries and dates from 2000-01-01, pivoted to one column per country. Quote convention
+  differs by currency as in the source. Missing days (holidays) are left empty.
+leakage_risks: Not applicable, there is no prediction target.
+representativeness: Ten currencies only. The Indonesian rupiah is not in the source.
+name: fx_daily_2000
+file: datasets/processed/fx_daily_2000.csv
+rows: 7015
+columns:
+- Date
+- Canada
+- Euro
+- India
+- Japan
+- Malaysia
+- Singapore
+- South Korea
+- Switzerland
+- Thailand
+- United Kingdom
+sha256: 927e27037d6f8c789b49157f1d15adbe7162c28a9925904a371ba11f04fb0412
+access_date: '2026-11-25'

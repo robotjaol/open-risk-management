@@ -1,0 +1,183 @@
+{
+  "module": "daily_market_risk_desk",
+  "methodology": "Rolling historical VaR on a linear FX book, tail mean split by position, limit status, data quality checks, backtest, reduction sizing verified by recomputation",
+  "data_kind": "empirical",
+  "dataset": "datasets/processed/fx_daily_2000.csv",
+  "n_obs": 6740,
+  "seed": 42,
+  "parameters": {
+    "currencies": [
+      "Euro",
+      "Japan",
+      "United Kingdom",
+      "Switzerland",
+      "Canada",
+      "Singapore"
+    ],
+    "positions_usd": [
+      40000000.0,
+      25000000.0,
+      15000000.0,
+      10000000.0,
+      5000000.0,
+      5000000.0
+    ],
+    "limit_usd": 1250000.0,
+    "amber": 0.8,
+    "red": 1.0,
+    "window": 500,
+    "alpha": 0.99,
+    "target_share_of_limit": 0.9,
+    "seed": 42
+  },
+  "assumptions": [
+    "positions are round illustrative amounts, long six currencies against USD",
+    "limit and status thresholds are illustrative and not from any institution",
+    "rows with a missing rate in any currency are dropped, so a return can span a holiday"
+  ],
+  "metrics": {
+    "daily_report": {
+      "as_of": "2026-11-20",
+      "book_usd": 100000000.0,
+      "var_99_1d_usd": 969989.5074880347,
+      "tail_mean_usd": 1171725.9540245528,
+      "pnl_today_usd": 190069.7840684484,
+      "exception_today": 0,
+      "limit_usd": 1250000.0,
+      "utilisation": 0.7759916059904277,
+      "status": "green",
+      "largest_tail_contributor": "Euro",
+      "largest_tail_contributor_share": 0.3772892186821729,
+      "exceptions_last_250d": 0,
+      "traffic_light_zone": "green",
+      "dq_flags_today": {
+        "stale_all_currencies": false,
+        "outlier_over_5_sigma": false,
+        "gap_over_5_days": false
+      }
+    },
+    "status_share_of_days": {
+      "amber": 0.4814102564102564,
+      "green": 0.32532051282051283,
+      "red": 0.19326923076923078
+    },
+    "exceptions_full_history": 85,
+    "kupiec_p_full_history": 0.006423819150417521,
+    "data_quality_counts_full_history": {
+      "stale_all_currencies": 3,
+      "outlier_over_5_sigma": 43,
+      "gap_over_5_days": 0
+    },
+    "red_episodes": 4,
+    "highest_utilisation_day": "2013-06-21",
+    "highest_utilisation": 1.1531843342989248,
+    "pro_rata_cut_usd": 21955235.3226206,
+    "targeted_options": [
+      {
+        "currency": "Euro",
+        "keep_share": 0.5,
+        "usd_cut": 20000000.00000002,
+        "new_var": 1124185.4676685557
+      },
+      {
+        "currency": "Japan",
+        "keep_share": 0.27,
+        "usd_cut": 18250000.000000015,
+        "new_var": 1124934.8080649064
+      },
+      {
+        "currency": "United Kingdom",
+        "keep_share": null,
+        "usd_cut": null,
+        "new_var": null
+      },
+      {
+        "currency": "Switzerland",
+        "keep_share": null,
+        "usd_cut": null,
+        "new_var": null
+      },
+      {
+        "currency": "Canada",
+        "keep_share": null,
+        "usd_cut": null,
+        "new_var": null
+      },
+      {
+        "currency": "Singapore",
+        "keep_share": null,
+        "usd_cut": null,
+        "new_var": null
+      }
+    ],
+    "cheapest_targeted_cut_usd": 18250000.000000015,
+    "cheapest_targeted_currency": "Japan",
+    "limit_sensitivity": [
+      {
+        "limit_usd": 1000000.0,
+        "share_amber": 0.2503205128205128,
+        "share_red": 0.6746794871794872
+      },
+      {
+        "limit_usd": 1250000.0,
+        "share_amber": 0.4814102564102564,
+        "share_red": 0.19326923076923078
+      },
+      {
+        "limit_usd": 1500000.0,
+        "share_amber": 0.2,
+        "share_red": 0.0
+      }
+    ],
+    "window_sensitivity": [
+      {
+        "window": 250,
+        "var_as_of_usd": 703712.8033882849,
+        "share_red": 0.15993836671802775
+      },
+      {
+        "window": 500,
+        "var_as_of_usd": 969989.5074880347,
+        "share_red": 0.19326923076923078
+      },
+      {
+        "window": 1000,
+        "var_as_of_usd": 996860.8260137683,
+        "share_red": 0.20766550522648083
+      }
+    ],
+    "acceptance_criteria": {
+      "scratch_var_equals_library_no_lookahead_1e-12": true,
+      "tail_parts_sum_to_tail_mean": true,
+      "pro_rata_reduction_verified_and_linear": true,
+      "targeted_reduction_verified": true,
+      "data_quality_checks_ran": true,
+      "daily_report_has_all_fields": true
+    }
+  },
+  "baseline": "pro rata reduction of all positions",
+  "limitations": [
+    "linear spot positions only, no options, forwards, carry or settlement",
+    "one day horizon, no liquidity horizon",
+    "the limit was set after looking at the VaR history",
+    "no intraday data and no daily revaluation of a real book"
+  ],
+  "figures": [
+    "var_vs_limit.png",
+    "tail_contributions.png",
+    "reduction_options.png"
+  ],
+  "created": "2026-11-25T05:53:37+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

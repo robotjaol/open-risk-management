@@ -32,7 +32,7 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/historical_var.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/market_returns.csv`. Observations: 3000. Seed: 42. Created: 2026-11-25T05:24:27+00:00.
+Source: `experiments/results/historical_var.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/market_returns.csv`. Observations: 3000. Seed: 42. Created: 2026-11-25T05:53:12+00:00.
 
 | Metric | Value |
 |---|---|

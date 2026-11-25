@@ -33,10 +33,21 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/credit_scoring.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/retail_loans_dev.csv and retail_loans_monitoring.csv`. Observations: 21000. Seed: 42. Created: 2026-11-25T05:24:18+00:00.
+Source: `experiments/results/credit_scoring.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/retail_loans_dev.csv and retail_loans_monitoring.csv`. Observations: 21000. Seed: 42. Created: 2026-11-25T05:53:06+00:00.
 
 | Metric | Value |
 |---|---|
+| `iv.age` | 0.009593 |
+| `iv.income` | 0.1371 |
+| `iv.employment_years` | 0.001515 |
+| `iv.credit_history_years` | 0.05791 |
+| `iv.dti` | 0.3985 |
+| `iv.utilization` | 0.06969 |
+| `iv.ltv` | 0.1027 |
+| `iv.delinq_2y` | 0.2168 |
+| `iv.loan_amount` | 0.005416 |
+| `iv.term_months` | 0.0006043 |
+| `iv.interest_rate` | 0.5521 |
 | `scaling.factor` | 28.85 |
 | `scaling.offset` | 487.1 |
 | `scaling.base_score` | 600 |

@@ -141,7 +141,7 @@
     "synthetic data, no real portfolio behaviour",
     "no out of time test in this module"
   ],
-  "created": "2026-11-25T05:24:14+00:00",
+  "created": "2026-11-25T05:53:02+00:00",
   "environment": {
     "python": "3.13.18",
     "platform": "Linux",

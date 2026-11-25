@@ -31,7 +31,7 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/duration_and_convexity.json`. Data kind: **illustrative**. Dataset: `none, bonds defined in the notebook`. Observations: 25. Seed: None. Created: 2026-11-25T05:24:11+00:00.
+Source: `experiments/results/duration_and_convexity.json`. Data kind: **illustrative**. Dataset: `none, bonds defined in the notebook`. Observations: 25. Seed: None. Created: 2026-11-25T05:52:58+00:00.
 
 | Metric | Value |
 |---|---|

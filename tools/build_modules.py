@@ -16,6 +16,10 @@ MODULES = [
     "parametric_var",
     "expected_shortfall",
     "backtesting",
+    "var_crisis_research",
+    "daily_market_risk_desk",
+    "credit_decision_cutoff",
+    "historical_stress_replay",
 ]
 
 

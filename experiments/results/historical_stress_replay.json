@@ -1,0 +1,266 @@
+{
+  "module": "historical_stress_replay",
+  "methodology": "Historical scenario replay on today's portfolio, reverse stress frontier, rolling monthly VaR with Kupiec test",
+  "data_kind": "empirical",
+  "dataset": "datasets/raw/sp500_shiller_monthly.csv",
+  "n_obs": 1829,
+  "seed": 42,
+  "parameters": {
+    "weights": {
+      "equity": 0.6,
+      "bond": 0.4
+    },
+    "value_usd": 100000000.0,
+    "loss_appetite": 0.2,
+    "var_window_months": 240,
+    "alpha": 0.99,
+    "bond": {
+      "maturity_years": 10,
+      "freq": 2,
+      "par": true
+    },
+    "seed": 42
+  },
+  "assumptions": [
+    "loss appetite of 20 percent in a month is illustrative",
+    "10 year bond is a constant maturity par bond, roll down ignored",
+    "equity dividend is the annual rate in the file divided by 12",
+    "rows with zero dividend or zero yield at the end of the file are excluded"
+  ],
+  "metrics": {
+    "valid_months": 1830,
+    "excluded_trailing_rows": 39,
+    "last_valid_month": "2023-06-01",
+    "todays_yield": 0.0375,
+    "bond_approx_error_p50_p99_max": [
+      1.2760639224972115e-09,
+      3.335960915272722e-05,
+      0.00032632829609882674
+    ],
+    "var_exceptions": 26,
+    "var_expected_exceptions": 15.890000000000015,
+    "var_months_evaluated": 1589,
+    "kupiec_p": 0.019565468744979213,
+    "worst_monthly_loss_historical_portfolio": 0.15499115192805898,
+    "worst_monthly_loss_date": "1929-11-01",
+    "var_in_force_at_worst_month": 0.04505940316854438,
+    "replay_12_month_windows": [
+      {
+        "window": "1931-07-01 to 1932-06-01",
+        "equity_return": -0.6228340556169341,
+        "yield_change_bp": 5.000000000000004,
+        "portfolio_return": -0.36035146669767226,
+        "loss_usd": 36035146.66976722
+      },
+      {
+        "window": "1937-04-01 to 1938-03-01",
+        "equity_return": -0.3947535176718078,
+        "yield_change_bp": -13.000000000000025,
+        "portfolio_return": -0.217521745297283,
+        "loss_usd": 21752174.5297283
+      },
+      {
+        "window": "2008-04-01 to 2009-03-01",
+        "equity_return": -0.4091445548715422,
+        "yield_change_bp": -69.0,
+        "portfolio_return": -0.2068639309904413,
+        "loss_usd": 20686393.099044133
+      },
+      {
+        "window": "1930-06-01 to 1931-05-01",
+        "equity_return": -0.36796820732432933,
+        "yield_change_bp": 14.000000000000053,
+        "portfolio_return": -0.21038371957463878,
+        "loss_usd": 21038371.95746388
+      },
+      {
+        "window": "1973-11-01 to 1974-10-01",
+        "equity_return": -0.3414458954814217,
+        "yield_change_bp": 110.99999999999999,
+        "portfolio_return": -0.22470541969113172,
+        "loss_usd": 22470541.96911317
+      }
+    ],
+    "replay_worst_months": [
+      {
+        "month": "1929-11-01",
+        "equity_return": -0.2618792425866382,
+        "yield_change_bp": -3.0000000000000164,
+        "portfolio_return": -0.15488307457135353,
+        "loss_usd": 15488307.457135353
+      },
+      {
+        "month": "1932-04-01",
+        "equity_return": -0.23251311541565778,
+        "yield_change_bp": -3.0000000000000164,
+        "portfolio_return": -0.13726339826876527,
+        "loss_usd": 13726339.826876527
+      },
+      {
+        "month": "2008-10-01",
+        "equity_return": -0.20194635039328745,
+        "yield_change_bp": 11.999999999999996,
+        "portfolio_return": -0.12386688212801375,
+        "loss_usd": 12386688.212801374
+      },
+      {
+        "month": "1931-12-01",
+        "equity_return": -0.18110362528071877,
+        "yield_change_bp": 2.999999999999947,
+        "portfolio_return": -0.10840375589594418,
+        "loss_usd": 10840375.589594418
+      },
+      {
+        "month": "2020-03-01",
+        "equity_return": -0.18916572657958652,
+        "yield_change_bp": -63.0,
+        "portfolio_return": -0.09074436102518343,
+        "loss_usd": 9074436.102518344
+      }
+    ],
+    "worst_replayed_month_loss": 0.15488307457135353,
+    "loss_appetite": 0.2,
+    "reverse_stress_frontier": [
+      {
+        "rate_shock_bp": -100,
+        "bond_return": 0.09003536601817981,
+        "equity_return_needed": -0.3933569106787866,
+        "portfolio_return": -0.2
+      },
+      {
+        "rate_shock_bp": 0,
+        "bond_return": 0.0031249999999999997,
+        "equity_return_needed": -0.3354166666666667,
+        "portfolio_return": -0.2
+      },
+      {
+        "rate_shock_bp": 100,
+        "bond_return": -0.07574912362883628,
+        "equity_return_needed": -0.28283391758077586,
+        "portfolio_return": -0.20000000000000004
+      },
+      {
+        "rate_shock_bp": 200,
+        "bond_return": -0.14738377676803532,
+        "equity_return_needed": -0.23507748215464314,
+        "portfolio_return": -0.2
+      },
+      {
+        "rate_shock_bp": 300,
+        "bond_return": -0.21249256890017537,
+        "equity_return_needed": -0.19167162073321642,
+        "portfolio_return": -0.2
+      },
+      {
+        "rate_shock_bp": 400,
+        "bond_return": -0.27171501589832664,
+        "equity_return_needed": -0.15218998940111558,
+        "portfolio_return": -0.2
+      }
+    ],
+    "weight_appetite_sensitivity": [
+      {
+        "equity_weight": 0.4,
+        "loss_appetite": 0.1,
+        "equity_fall_needed_no_rate_move": -0.2546875
+      },
+      {
+        "equity_weight": 0.4,
+        "loss_appetite": 0.2,
+        "equity_fall_needed_no_rate_move": -0.5046875
+      },
+      {
+        "equity_weight": 0.4,
+        "loss_appetite": 0.3,
+        "equity_fall_needed_no_rate_move": -0.7546875
+      },
+      {
+        "equity_weight": 0.6,
+        "loss_appetite": 0.1,
+        "equity_fall_needed_no_rate_move": -0.16875
+      },
+      {
+        "equity_weight": 0.6,
+        "loss_appetite": 0.2,
+        "equity_fall_needed_no_rate_move": -0.3354166666666667
+      },
+      {
+        "equity_weight": 0.6,
+        "loss_appetite": 0.3,
+        "equity_fall_needed_no_rate_move": -0.5020833333333333
+      },
+      {
+        "equity_weight": 0.8,
+        "loss_appetite": 0.1,
+        "equity_fall_needed_no_rate_move": -0.12578125
+      },
+      {
+        "equity_weight": 0.8,
+        "loss_appetite": 0.2,
+        "equity_fall_needed_no_rate_move": -0.25078124999999996
+      },
+      {
+        "equity_weight": 0.8,
+        "loss_appetite": 0.3,
+        "equity_fall_needed_no_rate_move": -0.37578124999999996
+      }
+    ],
+    "var_window_sensitivity": [
+      {
+        "window_months": 120,
+        "months": 1709,
+        "exceptions": 35,
+        "expected": 17.1,
+        "kupiec_p": 0.0001
+      },
+      {
+        "window_months": 240,
+        "months": 1589,
+        "exceptions": 26,
+        "expected": 15.9,
+        "kupiec_p": 0.0196
+      },
+      {
+        "window_months": 480,
+        "months": 1349,
+        "exceptions": 20,
+        "expected": 13.5,
+        "kupiec_p": 0.0965
+      }
+    ],
+    "acceptance_criteria": {
+      "bond_approximation_p99_below_0.1_percent": true,
+      "equity_hand_check_matches": true,
+      "scratch_var_equals_library_no_lookahead_1e-12": true,
+      "reverse_stress_frontier_gives_exact_appetite": true,
+      "worst_windows_start_12_months_apart": true,
+      "excluded_rows_are_trailing_and_valid_months_consecutive": true
+    }
+  },
+  "baseline": "rolling 99 percent historical VaR with a 240 month window",
+  "limitations": [
+    "US equity and US rates only, one portfolio",
+    "monthly data hides intra month moves, so the worst day is not seen",
+    "price definition (monthly average or month end) is not verified, an average would understate tail months",
+    "history based replay cannot show a month unlike any in the file",
+    "no credit spread, inflation or liquidity effect, and no correlation break scenario",
+    "the yield series of the 19th century is a reconstruction by the data author"
+  ],
+  "figures": [
+    "reverse_stress_frontier.png",
+    "monthly_var_exceptions.png"
+  ],
+  "created": "2026-11-25T05:53:44+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

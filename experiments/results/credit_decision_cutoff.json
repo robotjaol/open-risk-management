@@ -1,0 +1,167 @@
+{
+  "module": "credit_decision_cutoff",
+  "methodology": "Logistic PD model on real applicant data, cost based cut off from error costs, bootstrap cost reduction, repeated splits, prior shift",
+  "data_kind": "empirical",
+  "dataset": "datasets/raw/german_credit.csv",
+  "n_obs": 1000,
+  "seed": 42,
+  "parameters": {
+    "test_size": 0.3,
+    "l2": 1.0,
+    "cost_bad_approved": 5.0,
+    "cost_good_refused": 1.0,
+    "protected_excluded": [
+      "personal_status_and_sex",
+      "foreign_worker"
+    ],
+    "bootstrap_resamples": 4000,
+    "repeated_splits": 100,
+    "seed": 42
+  },
+  "assumptions": [
+    "the 5 to 1 error costs come with the dataset and are not a bank's economics",
+    "probabilities are treated as calibrated when the cut off is derived",
+    "protected attributes are excluded, age is kept"
+  ],
+  "metrics": {
+    "test_evaluation": {
+      "auc": 0.7960846560846561,
+      "ks": 0.4888888888888889,
+      "brier": 0.16003334428630656,
+      "brier_constant": 0.21
+    },
+    "calibration_deciles_5_bins": [
+      {
+        "bin": 1,
+        "count": 60,
+        "mean_predicted": 0.0482,
+        "observed_rate": 0.1167
+      },
+      {
+        "bin": 2,
+        "count": 60,
+        "mean_predicted": 0.1305,
+        "observed_rate": 0.0667
+      },
+      {
+        "bin": 3,
+        "count": 60,
+        "mean_predicted": 0.2404,
+        "observed_rate": 0.2167
+      },
+      {
+        "bin": 4,
+        "count": 60,
+        "mean_predicted": 0.4153,
+        "observed_rate": 0.4167
+      },
+      {
+        "bin": 5,
+        "count": 60,
+        "mean_predicted": 0.6682,
+        "observed_rate": 0.6833
+      }
+    ],
+    "policy_cost_per_applicant": {
+      "approve all": 1.5,
+      "refuse all": 0.7,
+      "model, cut off 1/6": 0.5233333333333333
+    },
+    "approve_share_at_cutoff": 0.37666666666666665,
+    "cost_difference_vs_approve_all_ci95": [
+      -1.2733333333333334,
+      -0.7033333333333333
+    ],
+    "cost_difference_vs_refuse_all_ci95": [
+      -0.2866666666666667,
+      -0.046666666666666634
+    ],
+    "bayes_cutoff": 0.16666666666666666,
+    "cutoff_chosen_by_cross_validation": 0.15000000000000002,
+    "repeated_splits": {
+      "n": 100,
+      "auc_mean": 0.7758137566137566,
+      "auc_std": 0.024167474535346456,
+      "share_model_beats_refuse_all": 0.99,
+      "share_model_beats_approve_all": 1.0,
+      "model_cost_mean": 0.5555666666666668,
+      "refuse_all_cost_mean": 0.7000000000000002,
+      "approve_all_cost_mean": 1.5
+    },
+    "protected_attributes_effect": {
+      "auc_with": 0.7938624338624338,
+      "auc_without": 0.7960846560846561,
+      "cost_with": 0.5333333333333333,
+      "cost_without": 0.5233333333333333
+    },
+    "prior_shift": [
+      {
+        "portfolio_bad_rate": 0.05,
+        "approve_share_adjusted_cutoff": 0.8733333333333333,
+        "cost_model_adjusted": 0.23206349206349203,
+        "cost_model_unadjusted": 0.5118253968253967,
+        "cost_approve_all": 0.24999999999999994,
+        "cost_refuse_all": 0.9499999999999996
+      },
+      {
+        "portfolio_bad_rate": 0.1,
+        "approve_share_adjusted_cutoff": 0.7166666666666667,
+        "cost_model_adjusted": 0.3426984126984127,
+        "cost_model_unadjusted": 0.5141269841269841,
+        "cost_approve_all": 0.5000000000000001,
+        "cost_refuse_all": 0.9
+      },
+      {
+        "portfolio_bad_rate": 0.2,
+        "approve_share_adjusted_cutoff": 0.5266666666666666,
+        "cost_model_adjusted": 0.4666666666666668,
+        "cost_model_unadjusted": 0.5187301587301587,
+        "cost_approve_all": 1.0,
+        "cost_refuse_all": 0.7999999999999999
+      },
+      {
+        "portfolio_bad_rate": 0.3,
+        "approve_share_adjusted_cutoff": 0.37666666666666665,
+        "cost_model_adjusted": 0.5233333333333333,
+        "cost_model_unadjusted": 0.5233333333333333,
+        "cost_approve_all": 1.5,
+        "cost_refuse_all": 0.7
+      }
+    ],
+    "newton_iterations": 7,
+    "test_auc_scikit_learn": 0.796031746031746,
+    "acceptance_criteria": {
+      "scratch_and_sklearn_auc_within_0.01": true,
+      "split_disjoint_and_stratified": true,
+      "derived_cutoff_equals_numerical_minimiser": true,
+      "test_auc_at_least_0.70": true,
+      "model_cost_below_approve_all_with_interval_excluding_zero": true,
+      "no_protected_columns_in_final_model": true
+    }
+  },
+  "baseline": "approve all and refuse all",
+  "limitations": [
+    "1000 applicants from one old source, 300 in the test set, so intervals are wide",
+    "costs count only two errors, not profit on good loans",
+    "no reject inference, so performance on refused applicants is unknown",
+    "age is kept as a feature, which some regulations do not allow",
+    "no out of time test, the data has no dates"
+  ],
+  "figures": [
+    "cost_by_cutoff.png",
+    "policy_cost_comparison.png"
+  ],
+  "created": "2026-11-25T05:53:41+00:00",
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

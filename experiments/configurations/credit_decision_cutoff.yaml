@@ -1,0 +1,10 @@
+test_size: 0.3
+l2: 1.0
+cost_bad_approved: 5.0
+cost_good_refused: 1.0
+protected_excluded:
+- personal_status_and_sex
+- foreign_worker
+bootstrap_resamples: 4000
+repeated_splits: 100
+seed: 42

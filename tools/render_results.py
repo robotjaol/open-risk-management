@@ -27,8 +27,9 @@ def scalar_rows(metrics):
             continue
         if isinstance(value, (int, float, bool)) or (isinstance(value, str) and len(value) <= 70):
             rows.append((key, short(value)))
-        elif isinstance(value, dict) and 0 < len(value) <= 6:
-            if all(isinstance(v, (int, float, bool)) for v in value.values()):
+        elif isinstance(value, dict) and 0 < len(value) <= 16:
+            scalar_types = (int, float, bool, str)
+            if all(isinstance(v, scalar_types) and len(str(v)) <= 40 for v in value.values()):
                 for sub_key, sub_value in value.items():
                     rows.append((f"{key}.{sub_key}", short(sub_value)))
     return rows[:MAX_ROWS]

@@ -1,0 +1,19 @@
+title: WTI Cushing spot price, daily, USD per barrel
+kind: empirical
+license: ODC-PDDL-1.0 (Open Data Commons Public Domain Dedication and License)
+source: US Energy Information Administration series RWTCd, via github.com/datasets/oil-prices
+source_url: https://raw.githubusercontent.com/datasets/oil-prices/main/data/wti-daily.csv
+target: none
+observation_period: 1986-01-02 to 2026-11-17
+changes: none, file copied as downloaded
+leakage_risks: Not applicable, there is no prediction target.
+representativeness: One commodity spot price. Contains the negative price of April 2020, so log returns
+  are undefined on those days.
+name: wti_spot_daily
+file: datasets/raw/wti_spot_daily.csv
+rows: 9547
+columns:
+- Date
+- Price
+sha256: 304c13ad5d8f229cdc806bc460fbca25c16c43200e0a513b146568bf2b4ce5ff
+access_date: '2026-11-25'
