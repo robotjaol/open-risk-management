@@ -19,13 +19,16 @@ Real data and applied case studies.
 * Status renderer plans 114 topics, 12 built.
 * Dataset catalog and cards cover `raw` and `processed`.
 
+### Verified
+
+* Both CI workflows ran green on a GitHub hosted runner for the v0.2.0 commit on 2026-11-25.
+
 ### Known issues
 
 * credit_scoring: acceptance check `auc_within_0.01_of_raw_logistic` is not met.
 * The 4 case studies are Validating, not Complete. Their references are verified, but no independent review exists.
 * The `german_credit` copy comes from a package and was not compared cell by cell with the UCI file.
 * The price definition (average or month end) of the Shiller file is not verified.
-* CI workflows have not run on a hosted runner.
 * 102 of 114 planned topics are not built. No liquidity, operational risk, capital, ALM or AML case study exists.
 
 ## [0.1.0] 2026-11-25

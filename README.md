@@ -7,7 +7,7 @@
 
 A paper driven, open learning lab for risk management, with banking as the main specialization. It has four parts that follow the work of a bank risk analyst: foundational thinking (methods built from scratch), practical method (the same methods against a library), daily activity (a desk report with limits, data checks and an action), and research simulation (hypotheses and acceptance criteria written before the result is read, run on real open data).
 
-**Current state, stated plainly.** 12 of 114 planned topics are built: 8 method modules on synthetic or illustrative data, and 4 applied case studies on real open data. 4 modules are Complete by the repository criteria and 8 are Validating. Nothing here has been independently reviewed, and the CI badges show a status only after the first push to GitHub. Read [limitations_and_disclaimers.md](docs/limitations_and_disclaimers.md) before relying on any number.
+**Current state, stated plainly.** 12 of 114 planned topics are built: 8 method modules on synthetic or illustrative data, and 4 applied case studies on real open data. 4 modules are Complete by the repository criteria and 8 are Validating. Nothing here has been independently reviewed. Both CI workflows ran green on a GitHub hosted runner for the v0.2.0 commit. Read [limitations_and_disclaimers.md](docs/limitations_and_disclaimers.md) before relying on any number.
 
 ## What the case studies found
 
