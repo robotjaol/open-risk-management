@@ -1,6 +1,6 @@
 # Regulatory Glossary
 
-Audience: readers who need to know which rule text a module points to. Reference document. This page lists names and the role of each source. It does not restate rule numbers or thresholds, because those were not verified against full texts in version 0.1.0. The verification status of every source is in [research/paper_catalog.csv](../research/paper_catalog.csv).
+Audience: readers who need to know which rule text a module points to. Reference document. This page lists names and the role of each source. It does not restate rule numbers or thresholds, because those were not verified against full texts in version 0.2.0. The verification status of every source is in [research/paper_catalog.csv](../research/paper_catalog.csv).
 
 | Source | Issuer | Role in this repository | Status in registry |
 |---|---|---|---|
@@ -23,4 +23,4 @@ Audience: readers who need to know which rule text a module points to. Reference
 ## Check before use
 
 * Read the primary text before citing any rule. The registry check confirms the bibliographic record only.
-* Regional rules (for example national implementations of Basel or local accounting variants) are not covered in version 0.1.0.
+* Regional rules (for example national implementations of Basel or local accounting variants) are not covered in version 0.2.0.

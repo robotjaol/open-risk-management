@@ -2,11 +2,11 @@ cff-version: 1.2.0
 message: If you use this repository, please cite it as below.
 title: Open Risk Management
 type: software
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-11-25
 license: MIT
 repository-code: https://github.com/robotjaol/open-risk-management
-abstract: Paper driven open learning lab for risk management with banking as the main specialization. Version 0.1.0 contains 8 modules on credit and market risk using synthetic data.
+abstract: Paper driven open learning lab for risk management with banking as the main specialization. Version 0.2.0 contains 8 method modules on synthetic data and 4 applied case studies on real open data.
 keywords:
   - risk management
   - credit risk

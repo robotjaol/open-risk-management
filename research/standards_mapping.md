@@ -12,6 +12,10 @@ Which module touches which standard or framework, and how. "Touches" means the m
 | probability_of_default | Lessmann et al. 2015, Gunnarsson et al. 2021, BCBS d424, SR 26-2 | model benchmarking, model risk guidance | method implemented |
 | credit_scoring | Siddiqi 2006 (not verified), Lessmann et al. 2015, Gunnarsson et al. 2021, SR 26-2 | scorecard practice, monitoring | method implemented, thresholds flagged unverified |
 | expected_credit_loss | IFRS 9 section 5.5, IASB review 2024, BCBS d424, SR 26-2 | three stage model, SICR, forward looking scenarios | simplified implementation |
+| var_crisis_research | Kupiec 1995, Christoffersen 1998, BCBS d457 | exception and independence tests, VaR model failure in crises | method implemented on real data |
+| daily_market_risk_desk | Kupiec 1995, Artzner et al. 1999, BCBS d457 | VaR against a limit, tail contribution, traffic light | method implemented, limit is illustrative |
+| credit_decision_cutoff | Lessmann et al. 2015, Gunnarsson et al. 2021, SR 26-2 | model benchmarking, model risk guidance, cost based cut off | method implemented on real data |
+| historical_stress_replay | Kupiec 1995, Artzner et al. 1999, BCBS d457 | scenario replay, reverse stress, VaR exception test | method implemented, no supervisory scenario |
 
 The exact reference lists per module are in each module's `references.md`. If this table and a `references.md` differ, the module file is right.
 

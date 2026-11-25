@@ -203,6 +203,29 @@ REFS = {
 }
 
 
+# DOI records matched with the Crossref API on VERIFIED_ON. The check compared title, authors,
+# journal, year, volume and issue. Page ranges were not compared for every record.
+DOIS = {
+    "kupiec1995": ("10.3905/jod.1995.407942", "DOI is the Journal of Derivatives version. The link in the registry is the Fed working paper."),
+    "christoffersen1998": ("10.2307/2527341", ""),
+    "artzner1999": ("10.1111/1467-9965.00068", ""),
+    "acerbi2002": ("10.1016/S0378-4266(02)00283-2", ""),
+    "rockafellar2000": ("10.21314/JOR.2000.038", "Crossref gives pages 21 to 41, registry says 21 to 42."),
+    "bollerslev1986": ("10.1016/0304-4076(86)90063-1", ""),
+    "nolde2017": ("10.1214/17-AOAS1041", "Crossref record shows no page range."),
+    "lessmann2015": ("10.1016/j.ejor.2015.05.030", ""),
+    "gunnarsson2021": ("10.1016/j.ejor.2021.03.006", ""),
+}
+
+
+def doi_of(key):
+    return DOIS[key][0] if key in DOIS else ""
+
+
+def doi_note(key):
+    return DOIS[key][1] if key in DOIS else ""
+
+
 def get(keys):
     """Return reference records for a list of keys."""
     return [REFS[key] for key in keys]

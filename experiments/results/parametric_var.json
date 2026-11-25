@@ -256,7 +256,7 @@
     "linear positions only",
     "single confidence level in the backtest"
   ],
-  "created": "2026-11-25T05:53:16+00:00",
+  "created": "2026-11-25T10:36:03+00:00",
   "environment": {
     "python": "3.13.18",
     "platform": "Linux",

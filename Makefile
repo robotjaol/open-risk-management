@@ -1,4 +1,4 @@
-.PHONY: install test lint format data notebooks build status clean
+.PHONY: install test lint format data fetch-data notebooks build status clean
 
 install:
 	pip install -e ".[development]"
@@ -17,6 +17,9 @@ format:
 
 data:
 	python tools/build_datasets.py
+
+fetch-data:
+	python tools/fetch_real_data.py
 
 build:
 	python tools/build_modules.py

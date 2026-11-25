@@ -1,6 +1,6 @@
 # Regulatory Sources
 
-Each row is a source that a module in version 0.1.0 cites. The registry check confirmed the bibliographic record on 2026-11-25. The full texts were not read for every rule, so rule level claims need the primary text.
+Each row is a source that a module in version 0.2.0 cites. The registry check confirmed the bibliographic record on 2026-11-25. The full texts were not read for every rule, so rule level claims need the primary text.
 
 | Source | Issuer | Link | Registry status | Used by |
 |---|---|---|---|---|

@@ -1,12 +1,12 @@
 # Getting Started
 
-Audience: someone who knows basic Python and wants to run the modules and read the results. Time to first result: about 10 minutes. Version 0.1.0, 2026-11-25. Maintainer: robotjaol.
+Audience: someone who knows basic Python and wants to run the modules and read the results. Time to first result: about 10 minutes. Version 0.2.0, 2026-11-25. Maintainer: robotjaol.
 
 This is a how to guide. For definitions see the glossaries. For the rules every module follows see [methodology_standards.md](methodology_standards.md).
 
 ## Requirements
 
-Python 3.10 or newer, git, and about 500 MB of disk space for packages. No network access is needed after installation because every dataset is generated locally.
+Python 3.10 or newer, git, and about 500 MB of disk space for packages. No network access is needed after installation because every dataset is generated locally or committed with a checksum.
 
 ## Steps
 
@@ -17,7 +17,7 @@ Python 3.10 or newer, git, and about 500 MB of disk space for packages. No netwo
    cd open-risk-management
    ```
 
-   Expected result: the folders `02_credit_risk`, `03_market_risk`, `src`, `tools` exist.
+   Expected result: the folders `02_credit_risk`, `03_market_risk`, `12_end_to_end_banking_projects`, `src`, `tools` exist.
 
 2. Create an environment and install the package with development tools.
 
@@ -52,11 +52,27 @@ Python 3.10 or newer, git, and about 500 MB of disk space for packages. No netwo
    make notebooks
    ```
 
-   Expected result: one line per notebook that starts with `ok`. Runtime is under 1 minute on a normal laptop because the datasets are small.
+   Expected result: one line per notebook that starts with `ok`, 12 in total. Runtime is about 1 minute on a normal laptop.
+
+   To read and run a notebook yourself, start JupyterLab and open one of the notebooks under `02_credit_risk`, `03_market_risk` or `12_end_to_end_banking_projects`.
+
+   ```bash
+   jupyter lab
+   ```
+
+   Expected result: a browser tab opens. Choose Run, Restart Kernel and Run All Cells. The notebook finishes without an error and writes figures to `experiments/figures/`.
 
 6. Read a module. Open `03_market_risk/historical_var/README.md` first, then the notebook next to it.
 
-7. Rebuild the status page.
+7. Optional: download the real datasets again from the original sources.
+
+   ```bash
+   make fetch-data
+   ```
+
+   Expected result: the files in `datasets/raw` and `datasets/processed` are rewritten. Compare `sha256` in each card. A changed checksum means the source file changed.
+
+8. Rebuild the status page.
 
    ```bash
    make status
@@ -70,9 +86,9 @@ Python 3.10 or newer, git, and about 500 MB of disk space for packages. No netwo
 |---|---|
 | `NN_family/topic/` | README, notebook, references.md for one module |
 | `src/risk_lab/` | reusable code that the notebooks import |
-| `datasets/` | synthetic data, dataset cards, catalog |
+| `datasets/` | synthetic and real data, dataset cards, catalog |
 | `experiments/` | saved results, configurations, figures, execution log |
-| `research/` | paper catalog, regulatory sources, standards mapping, research gaps |
+| `research/` | literature review, source register, paper catalog, regulatory sources, gaps |
 | `tools/` | build scripts for notebooks, data, status and catalogs |
 | `tests/` | unit tests, notebook validation, repository validation |
 
@@ -84,4 +100,4 @@ Python 3.10 or newer, git, and about 500 MB of disk space for packages. No netwo
 
 ## Known limits
 
-All datasets in version 0.1.0 are synthetic. Results show that code and methods behave as theory predicts. They say nothing about any real bank. See [limitations_and_disclaimers.md](limitations_and_disclaimers.md).
+Results on synthetic data show that code and methods behave as theory predicts. Results on real open data show behaviour on that series. Neither says anything about a real bank. See [limitations_and_disclaimers.md](limitations_and_disclaimers.md).

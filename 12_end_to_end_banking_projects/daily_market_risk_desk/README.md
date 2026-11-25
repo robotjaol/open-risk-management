@@ -32,7 +32,7 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/daily_market_risk_desk.json`. Data kind: **empirical**. Dataset: `datasets/processed/fx_daily_2000.csv`. Observations: 6740. Seed: 42. Created: 2026-11-25T05:53:37+00:00.
+Source: `experiments/results/daily_market_risk_desk.json`. Data kind: **empirical**. Dataset: `datasets/processed/fx_daily_2000.csv`. Observations: 6740. Seed: 42. Created: 2026-11-25T10:36:20+00:00.
 
 | Metric | Value |
 |---|---|

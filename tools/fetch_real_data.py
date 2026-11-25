@@ -106,24 +106,6 @@ def get_fx(scratch):
     })
 
 
-def get_macro():
-    import statsmodels.api as sm
-
-    frame = sm.datasets.macrodata.load_pandas().data
-    write_card(RAW, "us_macro_quarterly", frame, {
-        "title": "US macroeconomic quarterly data 1959Q1 to 2009Q3",
-        "kind": "empirical",
-        "license": "public domain, as stated in the statsmodels dataset copyright note",
-        "source": "statsmodels.datasets.macrodata (US Bureau of Economic Analysis and related US government series)",
-        "source_url": "https://www.statsmodels.org/stable/datasets/generated/macrodata.html",
-        "target": "none",
-        "observation_period": f"{int(frame['year'].min())}Q1 to {int(frame['year'].max())}Q3",
-        "changes": "none, loaded from the installed statsmodels package",
-        "leakage_risks": "Not applicable, there is no prediction target.",
-        "representativeness": "US data that ends in 2009. It contains the 2008 crisis but not recent years.",
-    })
-
-
 def get_german_credit(scratch):
     subprocess.run(
         [sys.executable, "-m", "pip", "download", "scorecardpy==0.1.9.7", "--no-deps", "-d", str(scratch), "-q"],
@@ -158,7 +140,6 @@ def main():
         get_sp500(scratch)
         get_fx(scratch)
         get_german_credit(scratch)
-    get_macro()
 
 
 if __name__ == "__main__":

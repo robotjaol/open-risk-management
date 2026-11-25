@@ -15,12 +15,12 @@ The notebook has 20 sections in this fixed order: Problem Statement, Learning Ob
 1. Every number in a README or doc comes from executed code. The README result block is rendered from `experiments/results/<module>.json` by `tools/render_results.py`.
 2. Every results file carries `data_kind`, one of synthetic, illustrative or empirical. A synthetic result is never described as a finding about real portfolios.
 3. Every method is implemented a second way (closed form, loop against library, finite difference, simulation or numerical integration) and the gap is saved.
-4. Acceptance criteria are written before the result is read and stored as booleans in the results file. A failed criterion is reported, not edited away. `credit_scoring` is the example in version 0.1.0.
+4. Acceptance criteria are written before the result is read and stored as booleans in the results file. A failed criterion is reported, not edited away. `credit_scoring` is the example in version 0.2.0.
 5. Seeds are fixed and stored.
 
 ## References
 
-A reference has `verified = true` only if its bibliographic record was matched against an independent index or the publisher page on the date in `tools/refs.py`. This does not mean the full text was read for every claim. Books are not verified in version 0.1.0.
+A reference has `verified = true` only if its bibliographic record was matched against an independent index or the publisher page on the date in `tools/refs.py`. This does not mean the full text was read for every claim. Books are not verified in version 0.2.0.
 
 ## Status rules
 

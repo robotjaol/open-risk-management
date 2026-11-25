@@ -42,7 +42,7 @@ One period expected loss: EL = PD x LGD x EAD. Constant annual hazard: cumulativ
 
 ## Assumptions
 
-* Formulas are textbook forms. The sources are listed in each module `references.md`, and the book sources are not verified in version 0.1.0.
+* Formulas are textbook forms. The sources are listed in each module `references.md`, and the book sources are not verified in version 0.2.0.
 * Fact: each formula above is implemented in the code and checked by a second method. Judgment: the choice of lambda 0.94 and the 0.5 year default timing are conventions, not requirements.
 
 ## Check before use

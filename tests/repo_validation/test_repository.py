@@ -22,7 +22,7 @@ REQUIRED_DOCS = [
 ]
 REQUIRED_RESEARCH = [
     "README.md", "paper_catalog.csv", "regulatory_sources.md", "standards_mapping.md",
-    "research_gaps.md",
+    "research_gaps.md", "literature_review.md", "source_register.md",
 ]
 SKIP_DIRS = {".git", ".venv", "__pycache__", ".pytest_cache", ".ruff_cache", ".ipynb_checkpoints"}
 
@@ -57,21 +57,83 @@ def test_no_empty_directories():
     assert empty == []
 
 
+def dataset_files():
+    files = []
+    for folder in ["synthetic", "raw", "processed"]:
+        files += sorted((ROOT / "datasets" / folder).glob("*.csv"))
+    return files
+
+
 def test_every_dataset_has_card_and_matching_checksum():
-    csv_files = sorted((ROOT / "datasets" / "synthetic").glob("*.csv"))
-    assert csv_files
+    csv_files = dataset_files()
+    assert len(csv_files) >= 8
     for csv_path in csv_files:
         card = yaml.safe_load(csv_path.with_suffix(".yaml").read_text())
         assert card["sha256"] == hashlib.sha256(csv_path.read_bytes()).hexdigest()
         for field in ["title", "kind", "license", "leakage_risks", "representativeness"]:
-            assert field in card
+            assert field in card, f"{field} missing in {csv_path.name}"
+
+
+def test_real_dataset_cards_have_source_and_access_date():
+    real = [p for p in dataset_files() if p.parent.name in ("raw", "processed")]
+    assert len(real) >= 4
+    for csv_path in real:
+        card = yaml.safe_load(csv_path.with_suffix(".yaml").read_text())
+        assert card["kind"] == "empirical"
+        assert card["source_url"].startswith("https://")
+        assert card["access_date"]
+        assert card["changes"]
 
 
 def test_dataset_catalog_lists_every_dataset():
-    names = {p.stem for p in (ROOT / "datasets" / "synthetic").glob("*.csv")}
+    names = {p.stem for p in dataset_files()}
     with (ROOT / "datasets" / "catalog.csv").open() as handle:
         listed = {row["name"] for row in csv.DictReader(handle)}
     assert listed == names
+
+
+def test_every_dataset_used_by_a_module_exists():
+    for spec in build_modules.all_specs():
+        assert spec["dataset"], spec["module"]
+
+
+def test_every_doi_in_catalog_is_well_formed_and_in_registry():
+    with (ROOT / "research" / "paper_catalog.csv").open() as handle:
+        rows = list(csv.DictReader(handle))
+    with_doi = [row for row in rows if row["doi"]]
+    assert len(with_doi) == len(refs.DOIS) == 9
+    for row in with_doi:
+        assert re.fullmatch(r"10\.\d{4,9}/\S+", row["doi"]), row["doi"]
+        assert row["verified"] == "yes"
+
+
+def test_source_register_is_current():
+    import render_catalogs
+
+    before = (ROOT / "research" / "source_register.md").read_text()
+    render_catalogs.write_source_register()
+    assert before == (ROOT / "research" / "source_register.md").read_text()
+
+
+def test_readme_images_exist():
+    readme = (ROOT / "README.md").read_text()
+    images = re.findall(r'src="([^"]+\.png)"', readme)
+    assert len(images) >= 4
+    for image in images:
+        assert (ROOT / image).exists(), image
+
+
+def test_readme_names_jupyter_lab():
+    assert "jupyter lab" in (ROOT / "README.md").read_text()
+
+
+def test_every_figure_listed_in_results_exists():
+    import json
+
+    for path in (ROOT / "experiments" / "results").glob("*.json"):
+        result = json.loads(path.read_text())
+        for name in result.get("figures", []):
+            assert (ROOT / "experiments" / "figures" / result["module"] / name).exists(), name
 
 
 def test_paper_catalog_matches_registry():

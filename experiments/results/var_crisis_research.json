@@ -1019,7 +1019,7 @@
     "exception_rate_by_period.png",
     "wti_gfc_var_paths.png"
   ],
-  "created": "2026-11-25T05:53:31+00:00",
+  "created": "2026-11-25T10:36:17+00:00",
   "environment": {
     "python": "3.13.18",
     "platform": "Linux",

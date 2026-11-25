@@ -210,7 +210,7 @@
     "covariate shift only, no concept drift",
     "no reject inference, no segmentation"
   ],
-  "created": "2026-11-25T05:53:06+00:00",
+  "created": "2026-11-25T10:35:51+00:00",
   "environment": {
     "python": "3.13.18",
     "platform": "Linux",

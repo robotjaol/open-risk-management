@@ -8,27 +8,27 @@
     "status": "ok"
   },
   "02_credit_risk/probability_of_default/probability_of_default.ipynb": {
-    "seconds": 3.7,
+    "seconds": 4.4,
     "status": "ok"
   },
   "03_market_risk/backtesting/backtesting.ipynb": {
-    "seconds": 3.4,
+    "seconds": 3.3,
     "status": "ok"
   },
   "03_market_risk/duration_and_convexity/duration_and_convexity.ipynb": {
-    "seconds": 2.1,
+    "seconds": 2.7,
     "status": "ok"
   },
   "03_market_risk/expected_shortfall/expected_shortfall.ipynb": {
-    "seconds": 4.3,
+    "seconds": 4.1,
     "status": "ok"
   },
   "03_market_risk/historical_var/historical_var.ipynb": {
-    "seconds": 3.7,
+    "seconds": 6.0,
     "status": "ok"
   },
   "03_market_risk/parametric_var/parametric_var.ipynb": {
-    "seconds": 4.1,
+    "seconds": 4.0,
     "status": "ok"
   },
   "12_end_to_end_banking_projects/credit_decision_cutoff/credit_decision_cutoff.ipynb": {
@@ -36,15 +36,15 @@
     "status": "ok"
   },
   "12_end_to_end_banking_projects/daily_market_risk_desk/daily_market_risk_desk.ipynb": {
-    "seconds": 3.3,
+    "seconds": 3.2,
     "status": "ok"
   },
   "12_end_to_end_banking_projects/historical_stress_replay/historical_stress_replay.ipynb": {
-    "seconds": 2.6,
+    "seconds": 2.5,
     "status": "ok"
   },
   "12_end_to_end_banking_projects/var_crisis_research/var_crisis_research.ipynb": {
-    "seconds": 10.0,
+    "seconds": 5.7,
     "status": "ok"
   }
 }

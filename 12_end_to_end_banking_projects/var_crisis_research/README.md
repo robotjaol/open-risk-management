@@ -32,7 +32,7 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/var_crisis_research.json`. Data kind: **empirical**. Dataset: `datasets/raw/wti_spot_daily.csv and datasets/processed/fx_daily_2000.csv`. Observations: 16284. Seed: 42. Created: 2026-11-25T05:53:31+00:00.
+Source: `experiments/results/var_crisis_research.json`. Data kind: **empirical**. Dataset: `datasets/raw/wti_spot_daily.csv and datasets/processed/fx_daily_2000.csv`. Observations: 16284. Seed: 42. Created: 2026-11-25T10:36:17+00:00.
 
 | Metric | Value |
 |---|---|

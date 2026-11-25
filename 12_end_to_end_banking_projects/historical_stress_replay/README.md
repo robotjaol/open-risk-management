@@ -32,7 +32,7 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/historical_stress_replay.json`. Data kind: **empirical**. Dataset: `datasets/raw/sp500_shiller_monthly.csv`. Observations: 1829. Seed: 42. Created: 2026-11-25T05:53:44+00:00.
+Source: `experiments/results/historical_stress_replay.json`. Data kind: **empirical**. Dataset: `datasets/raw/sp500_shiller_monthly.csv`. Observations: 1829. Seed: 42. Created: 2026-11-25T10:36:26+00:00.
 
 | Metric | Value |
 |---|---|

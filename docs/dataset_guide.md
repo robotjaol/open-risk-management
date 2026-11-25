@@ -1,25 +1,34 @@
 # Dataset Guide
 
-Audience: users who load or add datasets. Reference plus how to. Version 0.1.0.
+Audience: users who load or add datasets. Reference plus how to. Version 0.2.0.
 
 ## What exists
 
-Four synthetic datasets under `datasets/synthetic/`. Each has a CSV, a YAML card with the generator call, seed, columns, generating process, leakage risks, representativeness and a SHA 256 checksum, and a row in [datasets/catalog.csv](../datasets/catalog.csv).
+Synthetic data under `datasets/synthetic/` and real open data under `datasets/raw/` and `datasets/processed/`. Each file has a YAML card with the source or generator call, columns, leakage risks, representativeness and a SHA 256 checksum, and a row in [datasets/catalog.csv](../datasets/catalog.csv). If the catalog and the tables below differ, the catalog is right.
 
-| Dataset | Rows | Used by | Purpose |
-|---|---|---|---|
-| retail_loans_dev | 15000 | probability_of_default, credit_scoring | default model development, known true coefficients |
-| retail_loans_monitoring | 6000 | credit_scoring | same process with population drift, for PSI |
-| loan_book | 5000 | expected_credit_loss | PD, LGD, EAD inputs for staging and ECL |
-| market_returns | 3000 | historical_var, parametric_var, expected_shortfall, backtesting | daily equity, FX and bond returns from a GARCH(1,1) process with Student t shocks |
+| Dataset | Kind | Rows | Used by | Purpose |
+|---|---|---|---|---|
+| retail_loans_dev | synthetic | 15000 | probability_of_default, credit_scoring | default model development, known true coefficients |
+| retail_loans_monitoring | synthetic | 6000 | credit_scoring | same process with population drift, for PSI |
+| loan_book | synthetic | 5000 | expected_credit_loss | PD, LGD, EAD inputs for staging and ECL |
+| market_returns | synthetic | 3000 | method modules in market risk | daily returns from a GARCH(1,1) process with Student t shocks |
+| german_credit | real | 1000 | credit_decision_cutoff | applicant level default data with a cost matrix |
+| wti_spot_daily | real | 9547 | var_crisis_research | daily oil price including the negative price of April 2020 |
+| fx_daily_2000 | real, processed | 7015 | var_crisis_research, daily_market_risk_desk | daily exchange rates of 10 currencies from 2000 |
+| sp500_shiller_monthly | real | 1869 | historical_stress_replay | monthly equity price, dividend and 10 year yield from 1871 |
 
-Row counts come from the catalog. If the catalog and this table differ, the catalog is right.
+## Why both kinds
 
-## Why synthetic
+Judgment: synthetic data is useful because the true process is known, so a notebook can test whether a method recovers it. Real data shows what happens when the assumptions do not hold: the 500 day VaR failing in crises, drift in a portfolio, a negative oil price.
 
-Fact: the build environment of version 0.1.0 could not reach external data sources, so no real dataset was downloaded. Judgment: synthetic data is also useful because the true process is known, which lets a notebook test whether a method recovers it.
+Consequence: a result on synthetic data shows that a method works when its assumptions hold. A result on real open data shows behaviour on that series. Neither is a finding about a bank. Every results file has `data_kind` (synthetic, illustrative or empirical) and every README repeats it.
 
-Consequence: a result on synthetic data shows that a method works when its assumptions hold. It does not show that the method works on a real portfolio. Every results file has `data_kind` and every README repeats it.
+## Known data issues
+
+* WTI has two days with a negative or zero price in April 2020. Log returns are undefined there, so the two return days are excluded by a stated rule and the case counts them.
+* The Shiller file has trailing months with zero dividend and zero yield. They are excluded and counted.
+* The card of the Shiller file does not say whether the price is a monthly average or a month end value.
+* `german_credit` is small (1000 rows), old, and from one German source. Personal status and foreign worker are protected style attributes and must not be used for decisions in practice.
 
 ## Add a dataset
 
@@ -37,4 +46,5 @@ Cards list leakage risks. The retail loan sets contain `region`, `age`, `employm
 
 ## Check before use
 
-* Real world datasets named in the planned topics (for example public credit and rates data) are not in the repository. Check each license and terms before use.
+* Licenses were taken from the source pages and package metadata on the access date in each card. Check the terms again before you redistribute a file.
+* Public credit and rates data named in planned topics (for example FRED series) were not downloaded because the build environment could not reach those hosts.

@@ -33,7 +33,7 @@ To rebuild and execute from a clean kernel: `python tools/build_modules.py` then
 ## Saved results
 
 <!-- results:start -->
-Source: `experiments/results/credit_scoring.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/retail_loans_dev.csv and retail_loans_monitoring.csv`. Observations: 21000. Seed: 42. Created: 2026-11-25T05:53:06+00:00.
+Source: `experiments/results/credit_scoring.json`. Data kind: **synthetic**. Dataset: `datasets/synthetic/retail_loans_dev.csv and retail_loans_monitoring.csv`. Observations: 21000. Seed: 42. Created: 2026-11-25T10:35:51+00:00.
 
 | Metric | Value |
 |---|---|
